@@ -1,0 +1,179 @@
+.header {
+  position: fixed;
+  z-index: 50;
+
+  top: 0;
+  right: 0;
+  left: 0;
+
+  width: 100%;
+  height: var(--header-height);
+
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-background);
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  height: 100%;
+
+  padding: 0 30px;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+
+  height: 100%;
+}
+
+.menuButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 40px;
+  height: 40px;
+
+  padding: 0;
+  border: 0;
+
+  color: #ffffff;
+  background: transparent;
+
+  cursor: pointer;
+}
+
+.menuLines {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  width: 28px;
+}
+
+.menuLine {
+  display: block;
+
+  width: 100%;
+  height: 2px;
+
+  border-radius: 999px;
+  background: currentColor;
+
+  transition: transform 250ms ease;
+}
+
+.menuButton:hover .menuLine:first-child {
+  transform: translateX(4px);
+}
+
+.menuButton:hover .menuLine:last-child {
+  transform: translateX(-4px);
+}
+
+.logoLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo {
+  width: auto;
+  height: 48px;
+  object-fit: contain;
+}
+
+.contactButton {
+  position: relative;
+  isolation: isolate;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 160px;
+  height: 50px;
+
+  overflow: hidden;
+
+  border: 1px solid rgb(255 255 255 / 30%);
+  border-radius: 3px;
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgb(255 255 255 / 14%),
+      transparent 62%
+    ),
+    #070707;
+
+  color: #ffffff;
+
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+  text-transform: uppercase;
+
+  transition: border-color 300ms ease;
+}
+
+.contactButton::before {
+  position: absolute;
+  z-index: -1;
+
+  inset: -50%;
+
+  content: "";
+
+  background: linear-gradient(
+    115deg,
+    transparent 35%,
+    rgb(255 255 255 / 16%) 50%,
+    transparent 65%
+  );
+
+  transform: translateX(-70%);
+  transition: transform 500ms ease;
+}
+
+.contactButton:hover {
+  border-color: rgb(255 255 255 / 70%);
+}
+
+.contactButton:hover::before {
+  transform: translateX(70%);
+}
+
+@media (max-width: 767px) {
+  .inner {
+    padding: 0 18px;
+  }
+
+  .left {
+    gap: 22px;
+  }
+
+  .menuLines {
+    width: 30px;
+    gap: 8px;
+  }
+
+  .logo {
+    height: 52px;
+  }
+
+  .contactButton {
+    min-width: auto;
+    height: 42px;
+
+    padding: 0 15px;
+
+    font-size: 11px;
+  }
+}

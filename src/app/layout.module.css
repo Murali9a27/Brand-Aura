@@ -1,0 +1,30 @@
+.body {
+  min-height: 100svh;
+  background: var(--color-background);
+  color: var(--color-text);
+}
+
+.siteContent {
+  display: flex;
+  flex-direction: column;
+
+  width: calc(100% - var(--left-nav-width));
+  min-height: 100svh;
+
+  margin-left: var(--left-nav-width);
+  padding-top: var(--header-height);
+}
+
+.siteMain {
+  flex: 1;
+
+  width: 100%;
+  min-width: 0;
+}
+
+@media (max-width: 767px) {
+  .siteContent {
+    width: 100%;
+    margin-left: 0;
+  }
+}

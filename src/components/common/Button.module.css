@@ -1,0 +1,224 @@
+@property --glow-one-x {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 82%;
+}
+
+@property --glow-one-y {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 0%;
+}
+
+@property --glow-two-x {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 10%;
+}
+
+@property --glow-two-y {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 100%;
+}
+
+@property --glow-one-color {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: rgba(255, 255, 255, 0.16);
+}
+
+@property --glow-two-color {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: rgba(255, 255, 255, 0.12);
+}
+
+.button {
+  position: relative;
+  isolation: isolate;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  /* width: 120px;
+  height: 40px; */
+
+  flex-shrink: 0;
+  overflow: hidden;
+
+  padding: 12px 18px;
+
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 4px;
+
+  background: transparent;
+  color: #ffffff;
+
+  box-shadow:
+    0 0 18px rgba(255, 255, 255, 0.04),
+    inset 0 0 18px rgba(255, 255, 255, 0.025);
+
+  cursor: pointer;
+  appearance: none;
+
+  transition:
+    border-color 300ms ease,
+    box-shadow 400ms ease;
+}
+
+/* Animated border layer */
+.button::before {
+  position: absolute;
+  z-index: -2;
+
+  top: 50%;
+  left: 50%;
+
+  width: 230%;
+  aspect-ratio: 1;
+
+  content: "";
+
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 215deg,
+    rgba(237, 177, 48, 0.3) 245deg,
+    #edb130 275deg,
+    #ffffff 300deg,
+    rgba(255, 255, 255, 0.35) 320deg,
+    transparent 345deg,
+    transparent 360deg
+  );
+
+  opacity: 0;
+
+  transform: translate(-50%, -50%) rotate(0deg);
+
+  transition: opacity 300ms ease;
+}
+
+/* Inner button surface */
+.button::after {
+  /*
+    Default:
+    Silver glow → upper-right
+    Silver glow → lower-left
+  */
+  --glow-one-x: 78%;
+  --glow-one-y: 0%;
+  --glow-one-color: rgba(255, 255, 255, 0.18);
+
+  --glow-two-x: 22%;
+  --glow-two-y: 100%;
+  --glow-two-color: rgba(255, 255, 255, 0.15);
+
+  position: absolute;
+  z-index: -1;
+
+  inset: 1px;
+
+  content: "";
+
+  border-radius: 2px;
+
+  background:
+    radial-gradient(
+      ellipse 70% 120% at var(--glow-one-x) var(--glow-one-y),
+      var(--glow-one-color) 0%,
+      transparent 58%
+    ),
+    radial-gradient(
+      ellipse 70% 120% at var(--glow-two-x) var(--glow-two-y),
+      var(--glow-two-color) 0%,
+      transparent 58%
+    ),
+    #050505;
+
+  transition:
+    --glow-one-x 550ms ease,
+    --glow-one-y 550ms ease,
+    --glow-two-x 550ms ease,
+    --glow-two-y 550ms ease,
+    --glow-one-color 450ms ease,
+    --glow-two-color 450ms ease;
+}
+
+.label {
+  position: relative;
+  z-index: 2;
+
+  color: inherit;
+
+  font-family: var(--font-geist-sans), sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0;
+  text-transform: uppercase;
+
+  pointer-events: none;
+}
+
+/* Button dimensions remain unchanged */
+.button:hover {
+  border-color: transparent;
+
+  box-shadow:
+    0 0 12px rgba(237, 177, 48, 0.25),
+    0 0 30px rgba(237, 177, 48, 0.13),
+    inset 0 0 20px rgba(237, 177, 48, 0.05);
+}
+
+.button:hover::before {
+  opacity: 1;
+  animation: rotateBorder 2.5s linear infinite;
+}
+
+.button:hover::after {
+  /*
+    Hover:
+    Gold glow → lower-right
+    Gold glow → upper-left
+  */
+  --glow-one-x: 22%;
+  --glow-one-y: 0%;
+  --glow-one-color: rgba(237, 177, 48, 0.3);
+
+  --glow-two-x: 78%;
+  --glow-two-y: 100%;
+  --glow-two-color: rgba(237, 177, 48, 0.24);
+}
+
+.button:focus-visible {
+  outline: 2px solid rgba(237, 177, 48, 0.9);
+  outline-offset: 4px;
+}
+
+.button:active {
+  transform: none;
+}
+
+@keyframes rotateBorder {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button,
+  .button::before,
+  .button::after {
+    transition: none;
+  }
+
+  .button:hover::before {
+    animation: none;
+  }
+}
