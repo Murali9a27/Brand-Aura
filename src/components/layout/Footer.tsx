@@ -116,8 +116,8 @@ export default function Footer() {
                 <Image
                   src={social.icon}
                   alt=""
-                  width={16}
-                  height={16}
+                  width={64}
+                  height={64}
                   className={styles.socialIcon}
                 />
               </a>

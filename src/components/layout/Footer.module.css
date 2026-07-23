@@ -17,10 +17,7 @@
 
   width: 100%;
 
-  padding:
-    clamp(48px, 6vw, 92px)
-    clamp(28px, 5vw, 92px)
-    16px;
+  padding: clamp(48px, 6vw, 92px) clamp(28px, 5vw, 92px) 16px;
 }
 
 /* Large faded B on the left */
@@ -75,12 +72,48 @@
   line-height: 0.78;
   letter-spacing: -0.075em;
   text-transform: uppercase;
-
+  /* text-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.6),
+     0 -1px 1px rgba(192, 190, 190, 0.4); */
   white-space: nowrap;
-
   pointer-events: none;
+
+  background: linear-gradient(180deg, #959595 0%, #111 18%, #000 50%, #111 82%, #3d3d3d 100%);
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.05));
 }
 
+/* .wordmark {
+  display: flex;
+  gap: 1.5rem;
+
+  font-family: "Bodoni 72", Didot, "Times New Roman", serif;
+  font-size: clamp(72px, 13.5vw, 250px);
+  font-weight: 300;
+  line-height: 1;
+
+  letter-spacing: 0.08em;
+
+  
+  background: linear-gradient(
+    180deg,
+    #111 0%,
+    #000 18%,
+    #3d3d3d 50%,
+    #000 82%,
+    #111 100%
+  );
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+
+  
+  filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.05));
+} */
 .wordmark span:first-child {
   margin-right: 0.13em;
 }
@@ -98,9 +131,7 @@
 
   opacity: 0;
 
-  transform:
-    translate(-50%, -15%)
-    rotate(-2deg);
+  transform: translate(-50%, -15%) rotate(-2deg);
 
   pointer-events: none;
 
@@ -116,9 +147,7 @@
 
   opacity: 1;
 
-  transform:
-    translate(-50%, -185%)
-    rotate(14deg);
+  transform: translate(-50%, -185%) rotate(14deg);
 
   pointer-events: auto;
 }
@@ -264,13 +293,13 @@
 }
 
 .socialIcon {
-  width: 13px;
+  /* width: 13px;
   height: 13px;
 
   object-fit: contain;
 
   filter: brightness(0) invert(1);
-  opacity: 0.82;
+  opacity: 0.82; */
 }
 
 .copyright {
@@ -350,18 +379,14 @@
 
     opacity: 1;
 
-    transform:
-      translate(-50%, -175%)
-      rotate(10deg);
+    transform: translate(-50%, -175%) rotate(10deg);
 
     pointer-events: auto;
   }
 
   .footer:hover .ctaWrapper,
   .footer:focus-within .ctaWrapper {
-    transform:
-      translate(-50%, -175%)
-      rotate(10deg);
+    transform: translate(-50%, -175%) rotate(10deg);
   }
 
   .primaryNavigation {
@@ -424,18 +449,12 @@
 
   .ctaWrapper {
     left: 60%;
-    transform:
-      translate(-50%, -185%)
-      rotate(9deg)
-      scale(0.82);
+    transform: translate(-50%, -185%) rotate(9deg) scale(0.82);
   }
 
   .footer:hover .ctaWrapper,
   .footer:focus-within .ctaWrapper {
-    transform:
-      translate(-50%, -185%)
-      rotate(9deg)
-      scale(0.82);
+    transform: translate(-50%, -185%) rotate(9deg) scale(0.82);
   }
 }
 

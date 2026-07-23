@@ -1,0 +1,179 @@
+.section {
+  position: relative;
+
+  width: 2500px;
+  min-width: 2500px;
+  height: 100%;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 42% 46%,
+      rgba(255, 255, 255, 0.06),
+      transparent 36%
+    ),
+    radial-gradient(
+      circle at 76% 35%,
+      rgba(244, 180, 26, 0.045),
+      transparent 20%
+    );
+}
+
+.identityCard {
+  top: 11%;
+  left: 35px;
+
+  width: 610px;
+  height: 46%;
+
+  transform: rotate(-14deg);
+}
+
+.logoCard {
+  left: 520px;
+  bottom: 1%;
+
+  width: 670px;
+  height: 45%;
+
+  background: #eeeeee;
+
+  transform: rotate(-13deg);
+}
+
+.satyamCard {
+  top: 9%;
+  left: 990px;
+
+  width: 620px;
+  height: 43%;
+
+  transform: rotate(5deg);
+}
+
+.industryCard {
+  right: 40px;
+  bottom: 5%;
+
+  width: 700px;
+  height: 45%;
+
+  transform: rotate(2deg);
+}
+
+.grayscaleImage {
+  filter: grayscale(1);
+}
+
+.ideasAnnotation {
+  top: 17%;
+  left: 720px;
+
+  transform: rotate(-7deg);
+}
+
+.visionAnnotation {
+  bottom: 7%;
+  left: 155px;
+
+  transform: rotate(-4deg);
+}
+
+.brandAnnotation {
+  bottom: 8%;
+  left: 1270px;
+
+  transform: rotate(-5deg);
+}
+
+.recallAnnotation {
+  top: 16%;
+  right: 155px;
+
+  transform: rotate(7deg);
+}
+
+@media (max-width: 1100px) {
+  .section {
+    width: 2200px;
+    min-width: 2200px;
+  }
+
+  .identityCard {
+    width: 560px;
+  }
+
+  .logoCard {
+    left: 470px;
+    width: 610px;
+  }
+
+  .satyamCard {
+    left: 900px;
+    width: 570px;
+  }
+
+  .industryCard {
+    width: 620px;
+  }
+
+  .brandAnnotation {
+    left: 1150px;
+  }
+}
+
+@media (max-width: 767px) {
+  .section {
+    width: 1900px;
+    min-width: 1900px;
+  }
+
+  .identityCard {
+    top: 10%;
+    left: -70px;
+
+    width: 650px;
+    height: 42%;
+  }
+
+  .logoCard {
+    left: 430px;
+    bottom: 1%;
+
+    width: 650px;
+    height: 42%;
+  }
+
+  .satyamCard {
+    top: 9%;
+    left: 900px;
+
+    width: 610px;
+    height: 42%;
+  }
+
+  .industryCard {
+    right: -100px;
+    bottom: 2%;
+
+    width: 650px;
+    height: 42%;
+  }
+
+  .ideasAnnotation {
+    left: 610px;
+  }
+
+  .visionAnnotation {
+    left: 70px;
+  }
+
+  .brandAnnotation {
+    left: 1150px;
+  }
+
+  .recallAnnotation {
+    right: 40px;
+  }
+}

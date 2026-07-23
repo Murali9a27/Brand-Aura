@@ -1,0 +1,194 @@
+.hero {
+  position: relative;
+  isolation: isolate;
+
+  width: 100%;
+  height: calc(100svh - var(--header-height));
+  min-height: 680px;
+
+  overflow: hidden;
+
+  border-bottom: 1px solid var(--color-border);
+  background: #050505;
+  color: #ffffff;
+}
+
+.viewport {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  cursor: grab;
+
+  scrollbar-width: none;
+  overscroll-behavior-x: contain;
+  touch-action: pan-x pan-y;
+  -webkit-overflow-scrolling: touch;
+}
+
+.viewport::-webkit-scrollbar {
+  display: none;
+}
+
+.viewport:focus {
+  outline: none;
+}
+
+.viewport:focus-visible {
+  outline: 1px solid rgba(244, 180, 26, 0.7);
+  outline-offset: -1px;
+}
+
+.viewport[data-dragging="true"] {
+  cursor: grabbing;
+  user-select: none;
+}
+
+.viewport[data-dragging="true"] * {
+  user-select: none;
+}
+
+.storyCanvas {
+  position: relative;
+
+  display: flex;
+  align-items: stretch;
+
+  width: max-content;
+  min-width: max-content;
+  height: 100%;
+
+  background:
+    radial-gradient(
+      circle at 11% 43%,
+      rgba(244, 180, 26, 0.08),
+      transparent 7%
+    ),
+    radial-gradient(
+      circle at 64% 44%,
+      rgba(255, 255, 255, 0.05),
+      transparent 15%
+    ),
+    #050505;
+
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
+}
+
+.storyCanvas::after {
+  position: absolute;
+  z-index: 20;
+  inset: 0;
+
+  content: "";
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.18),
+      transparent 8%,
+      transparent 92%,
+      rgba(0, 0, 0, 0.12)
+    ),
+    repeating-radial-gradient(
+      circle at center,
+      rgba(255, 255, 255, 0.008) 0,
+      transparent 1px,
+      transparent 4px
+    );
+
+  pointer-events: none;
+}
+
+.storyCanvas img {
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.helloButton {
+  position: absolute;
+  z-index: 40;
+
+  right: 0;
+  bottom: 0;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+
+  width: 180px;
+  height: 60px;
+
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-right: 0;
+  border-bottom: 0;
+  border-radius: 4px 0 0;
+
+  background:
+    radial-gradient(
+      circle at 65% 100%,
+      rgba(255, 255, 255, 0.13),
+      transparent 56%
+    ),
+    #080808;
+
+  color: #ffffff;
+
+  font-family: var(--font-geist-sans), sans-serif;
+  font-size: 17px;
+  font-weight: 600;
+
+  box-shadow:
+    0 0 24px rgba(255, 255, 255, 0.03),
+    inset 0 0 20px rgba(255, 255, 255, 0.025);
+
+  transition:
+    border-color 250ms ease,
+    background-color 250ms ease;
+}
+
+.helloButton svg {
+  width: 39px;
+  height: 31px;
+}
+
+.helloButton:hover {
+  border-color: rgba(244, 180, 26, 0.7);
+  background-color: #111111;
+}
+
+.helloButton:focus-visible {
+  outline: 2px solid rgba(244, 180, 26, 0.9);
+  outline-offset: -4px;
+}
+
+@media (max-width: 767px) {
+  .hero {
+    min-height: 620px;
+  }
+
+  .helloButton {
+    width: 145px;
+    height: 52px;
+
+    gap: 10px;
+
+    font-size: 14px;
+  }
+
+  .helloButton svg {
+    width: 31px;
+    height: 25px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .helloButton {
+    transition: none;
+  }
+}
