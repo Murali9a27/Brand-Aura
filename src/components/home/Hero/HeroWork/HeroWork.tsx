@@ -10,31 +10,50 @@ export default function HeroWork() {
       data-story-section="work"
       aria-label="Selected Brand Aura work"
     >
-      <ProjectCard
+      {/* <ProjectCard
         src="/images/home/hero/project-identity.webp"
         alt="Brand identity presentation"
         className={styles.identityCard}
-      />
+      /> */}
 
       <ProjectCard
-        src="/images/home/hero/sunny-sankla-logo.svg"
-        alt="Sunny Sankla Group identity"
-        className={styles.logoCard}
-        contain
+        src="/videos/home/hero/sunny-sankla.mp4"
+        alt="Sunny Sankla founder brand film"
+        mediaType="video"
+        className={styles.identityCard}
+        poster="/images/home/hero/sunny-sankla-poster.webp"
       />
 
+      
+      <ProjectCard
+        src="/videos/home/hero/sunny-sankla.mp4"
+        alt="Sunny Sankla founder brand film"
+        mediaType="video"
+        className={styles.sanklaCard}
+        poster="/images/home/hero/sunny-sankla-poster.webp"
+      />
+      
+        
       <ProjectCard
         src="/images/home/hero/satyam-brand.webp"
         alt="Satyam brand design"
+        mediaType="image"
         className={styles.satyamCard}
       />
 
       <ProjectCard
+        src="/videos/home/hero/sunny-sankla.mp4"
+        alt="Sunny Sankla founder brand film"
+        mediaType="video"
+        className={styles.industryCard}
+        poster="/images/home/hero/sunny-sankla-poster.webp"
+      />
+      {/* <ProjectCard
         src="/images/home/hero/industrial-project.webp"
         alt="Industrial brand campaign"
         className={styles.industryCard}
         imageClassName={styles.grayscaleImage}
-      />
+      /> */}
 
       <Annotation className={styles.ideasAnnotation}>
         Ideas, brought

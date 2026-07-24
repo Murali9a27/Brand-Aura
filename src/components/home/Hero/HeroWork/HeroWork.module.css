@@ -20,44 +20,34 @@
     );
 }
 
+/* Card 1 */
 .identityCard {
-  top: 11%;
+  top: 20%;
   left: 35px;
 
-  width: 610px;
-  height: 46%;
-
-  transform: rotate(-14deg);
+  transform: rotate(-16deg);
 }
 
-.logoCard {
-  left: 520px;
-  bottom: 1%;
+/* Card 2 */
+.sanklaCard {
+  left: 620px;
+  bottom: 8%;
 
-  width: 670px;
-  height: 45%;
-
-  background: #eeeeee;
-
-  transform: rotate(-13deg);
+  transform: rotate(-16deg);
 }
 
+/* Card 3 */
 .satyamCard {
-  top: 9%;
-  left: 990px;
-
-  width: 620px;
-  height: 43%;
+  top: 15%;
+  left: 1250px;
 
   transform: rotate(5deg);
 }
 
+/* Card 4 */
 .industryCard {
-  right: 40px;
+  right: 10px;
   bottom: 5%;
-
-  width: 700px;
-  height: 45%;
 
   transform: rotate(2deg);
 }
@@ -66,6 +56,7 @@
   filter: grayscale(1);
 }
 
+/* Annotations */
 .ideasAnnotation {
   top: 17%;
   left: 720px;
@@ -94,6 +85,10 @@
   transform: rotate(7deg);
 }
 
+/* =========================================================
+   TABLET / SMALL LAPTOP
+   ========================================================= */
+
 @media (max-width: 1100px) {
   .section {
     width: 2200px;
@@ -101,79 +96,171 @@
   }
 
   .identityCard {
-    width: 560px;
+    --card-width: 560px;
+
+    top: 18%;
+    left: 25px;
   }
 
-  .logoCard {
-    left: 470px;
-    width: 610px;
-  }
+  .sanklaCard {
+    --card-width: 610px;
 
-  .satyamCard {
-    left: 900px;
-    width: 570px;
-  }
-
-  .industryCard {
-    width: 620px;
-  }
-
-  .brandAnnotation {
-    left: 1150px;
-  }
-}
-
-@media (max-width: 767px) {
-  .section {
-    width: 1900px;
-    min-width: 1900px;
-  }
-
-  .identityCard {
-    top: 10%;
-    left: -70px;
-
-    width: 650px;
-    height: 42%;
-  }
-
-  .logoCard {
-    left: 430px;
-    bottom: 1%;
-
-    width: 650px;
-    height: 42%;
+    left: 500px;
+    bottom: 8%;
   }
 
   .satyamCard {
-    top: 9%;
-    left: 900px;
+    --card-width: 570px;
 
-    width: 610px;
-    height: 42%;
+    top: 14%;
+    left: 1040px;
   }
 
   .industryCard {
-    right: -100px;
-    bottom: 2%;
+    --card-width: 620px;
 
-    width: 650px;
-    height: 42%;
+    right: 20px;
+    bottom: 6%;
   }
 
   .ideasAnnotation {
-    left: 610px;
+    left: 620px;
   }
 
   .visionAnnotation {
-    left: 70px;
+    left: 120px;
   }
 
   .brandAnnotation {
-    left: 1150px;
+    left: 1100px;
   }
 
   .recallAnnotation {
-    right: 40px;
+    right: 100px;
+  }
+}
+
+/* =========================================================
+   MOBILE HORIZONTAL ARTBOARD
+   ========================================================= */
+
+@media (max-width: 767px) {
+  .section {
+    width: 1720px;
+    min-width: 1720px;
+  }
+
+  /*
+    Card width is capped by ProjectCard.module.css:
+
+    width: min(var(--card-width), 86vw);
+
+    Therefore, these preferred widths never overflow
+    the mobile viewport excessively.
+  */
+
+  .identityCard {
+    --card-width: 520px;
+
+    top: 12%;
+    left: 20px;
+
+    transform: rotate(-10deg);
+  }
+
+  .sanklaCard {
+    --card-width: 520px;
+
+    left: 390px;
+    bottom: 9%;
+
+    transform: rotate(-10deg);
+  }
+
+  .satyamCard {
+    --card-width: 520px;
+
+    top: 12%;
+    left: 770px;
+
+    transform: rotate(5deg);
+  }
+
+  .industryCard {
+    --card-width: 520px;
+
+    right: auto;
+    bottom: 7%;
+    left: 1140px;
+
+    transform: rotate(2deg);
+  }
+
+  .ideasAnnotation {
+    top: 9%;
+    left: 430px;
+
+    transform: rotate(-5deg);
+  }
+
+  .visionAnnotation {
+    bottom: 4%;
+    left: 65px;
+
+    transform: rotate(-3deg);
+  }
+
+  .brandAnnotation {
+    bottom: 5%;
+    left: 820px;
+
+    transform: rotate(-4deg);
+  }
+
+  .recallAnnotation {
+    top: 9%;
+    right: auto;
+    left: 1390px;
+
+    transform: rotate(5deg);
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 430px) {
+  .section {
+    width: 1580px;
+    min-width: 1580px;
+  }
+
+  .identityCard {
+    left: 16px;
+  }
+
+  .sanklaCard {
+    left: 355px;
+  }
+
+  .satyamCard {
+    left: 700px;
+  }
+
+  .industryCard {
+    left: 1045px;
+  }
+
+  .ideasAnnotation {
+    left: 385px;
+  }
+
+  .brandAnnotation {
+    left: 750px;
+  }
+
+  .recallAnnotation {
+    left: 1280px;
   }
 }

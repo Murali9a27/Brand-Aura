@@ -1,0 +1,82 @@
+.cursorGlow {
+  position: fixed;
+  z-index: 9998;
+
+  top: 0;
+  left: 0;
+
+  width: 190px;
+  height: 190px;
+
+  opacity: 0;
+
+  pointer-events: none;
+
+  transform:
+    translate3d(-300px, -300px, 0)
+    translate(-50%, -50%);
+
+  transition: opacity 250ms ease;
+
+  will-change: transform;
+}
+
+.cursorGlow[data-visible="true"] {
+  opacity: 1;
+}
+
+.glow {
+  position: absolute;
+
+  inset: 0;
+
+  border-radius: 50%;
+
+  background: radial-gradient(
+    circle at center,
+    rgba(210, 151, 23, 0.34) 0%,
+    rgba(184, 122, 4, 0.23) 20%,
+    rgba(145, 91, 0, 0.13) 38%,
+    rgba(82, 51, 0, 0.06) 55%,
+    transparent 73%
+  );
+
+  filter: blur(15px);
+
+  transform: scale(1);
+
+  transition:
+    opacity 220ms ease,
+    transform 220ms ease;
+}
+
+/* Slightly larger glow over links and buttons */
+.cursorGlow[data-interactive="true"] .glow {
+  opacity: 0.9;
+  transform: scale(1.15);
+}
+
+/* Compress glow while clicking or dragging */
+.cursorGlow[data-active="true"] .glow {
+  opacity: 0.85;
+  transform: scale(0.82);
+}
+
+/* Interactive pressed state */
+.cursorGlow[data-active="true"][data-interactive="true"]
+  .glow {
+  transform: scale(0.92);
+}
+
+@media (hover: none), (pointer: coarse) {
+  .cursorGlow {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursorGlow,
+  .glow {
+    transition: none;
+  }
+}

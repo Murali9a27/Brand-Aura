@@ -6,6 +6,8 @@ import HeroClosing from "./HeroClosing/HeroClosing";
 import HeroIntro from "./HeroIntro/HeroIntro";
 import HeroStatement from "./HeroStatement/HeroStatement";
 import HeroWork from "./HeroWork/HeroWork";
+import HeroCursor from "./HeroCursor/HeroCursor";
+import HeroBackgroundVideo from "./HeroBackgroundVideo/HeroBackgroundVideo";
 import { useHorizontalStory } from "./useHorizontalStory";
 
 import styles from "./Hero.module.css";
@@ -15,7 +17,9 @@ export default function Hero() {
     useHorizontalStory();
 
   return (
-    <section id="hero" className={styles.hero} aria-label="Brand Aura horizontal introduction">
+    <section id="hero" className={styles.hero} data-hero-cursor aria-label="Brand Aura horizontal introduction">
+      <HeroBackgroundVideo />
+      <HeroCursor />
       <div
         ref={viewportRef}
         className={styles.viewport}

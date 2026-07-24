@@ -5,38 +5,61 @@ import styles from "./ProjectCard.module.css";
 interface ProjectCardProps {
   src: string;
   alt: string;
+  mediaType?: "image" | "video";
   className?: string;
-  imageClassName?: string;
+  mediaClassName?: string;
   contain?: boolean;
   priority?: boolean;
+  poster?: string;
+  autoPlay?: boolean;
+  controls?: boolean;
 }
 
 export default function ProjectCard({
   src,
   alt,
+  mediaType = "image",
   className = "",
-  imageClassName = "",
+  mediaClassName = "",
   contain = false,
   priority = false,
+  poster,
+  autoPlay = true,
+  controls = false,
 }: ProjectCardProps) {
-  const cardClasses =
-    `${styles.card} ${className}`.trim();
+  const cardClasses = `${styles.card} ${className}`.trim();
 
-  const imageClasses = `
+  const mediaClasses = `
+    ${styles.media}
     ${contain ? styles.contain : styles.cover}
-    ${imageClassName}
+    ${mediaClassName}
   `.trim();
 
   return (
     <article className={cardClasses}>
-      <Image
-        src={src}
-        alt={alt}
-        fill
-        priority={priority}
-        sizes="700px"
-        className={imageClasses}
-      />
+      {mediaType === "video" ? (
+        <video
+          className={mediaClasses}
+          src={src}
+          poster={poster}
+          autoPlay={autoPlay}
+          muted
+          loop
+          playsInline
+          controls={controls}
+          preload="metadata"
+          aria-label={alt}
+        />
+      ) : (
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          priority={priority}
+          sizes="700px"
+          className={mediaClasses}
+        />
+      )}
     </article>
   );
 }

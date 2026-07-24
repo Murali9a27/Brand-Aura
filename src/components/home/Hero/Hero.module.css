@@ -22,7 +22,7 @@
   overflow-x: auto;
   overflow-y: hidden;
 
-  cursor: grab;
+  /* cursor: grab; */
 
   scrollbar-width: none;
   overscroll-behavior-x: contain;
@@ -44,7 +44,7 @@
 }
 
 .viewport[data-dragging="true"] {
-  cursor: grabbing;
+  /* cursor: grabbing; */
   user-select: none;
 }
 
@@ -192,3 +192,13 @@
     transition: none;
   }
 }
+
+
+/* @media (hover: hover) and (pointer: fine) {
+  .hero,
+  .hero a,
+  .hero button,
+  .viewport {
+    cursor: none;
+  }
+} */
