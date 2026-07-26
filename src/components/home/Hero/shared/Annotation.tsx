@@ -17,18 +17,28 @@ export default function Annotation({
     `${styles.annotation} ${className}`.trim();
 
   return (
-    <div className={classes}>
+     <div className={classes}>
+      {arrowDirection === "up" && (
+        <Image
+          src="/icons/shared/arrow-loop.svg"
+          alt=""
+          width={90}
+          height={90}
+          className={`${styles.arrow} ${styles.arrowUp}`}
+        />
+      )}
+
       <p>{children}</p>
 
-      <Image
-        src="/icons/shared/arrow-loop.svg"
-        alt=""
-        width={90}
-        height={90}
-        className={`${styles.arrow} ${
-          arrowDirection === "up" ? styles.arrowUp : ""
-        }`}
-      />
+      {arrowDirection === "down" && (
+        <Image
+          src="/icons/shared/arrow-loop.svg"
+          alt=""
+          width={90}
+          height={90}
+          className={styles.arrow}
+        />
+      )}
     </div>
   );
 }

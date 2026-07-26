@@ -1,6 +1,5 @@
 import Annotation from "../shared/Annotation";
 import ProjectCard from "../shared/ProjectCard";
-
 import styles from "./HeroWork.module.css";
 
 export default function HeroWork() {
@@ -17,33 +16,39 @@ export default function HeroWork() {
       /> */}
 
       <ProjectCard
-        src="/videos/home/hero/sunny-sankla.mp4"
+        src="/videos/home/ba-project-card-IAPL.mp4"
         alt="Sunny Sankla founder brand film"
         mediaType="video"
         className={styles.identityCard}
         poster="/images/home/hero/sunny-sankla-poster.webp"
       />
 
-      
       <ProjectCard
-        src="/videos/home/hero/sunny-sankla.mp4"
+        src="/videos/home/ba-project-card-satym.mp4"
         alt="Sunny Sankla founder brand film"
         mediaType="video"
         className={styles.sanklaCard}
         poster="/images/home/hero/sunny-sankla-poster.webp"
       />
-      
-        
-      <ProjectCard
+
+      {/* <ProjectCard
         src="/images/home/hero/satyam-brand.webp"
         alt="Satyam brand design"
         mediaType="image"
         className={styles.satyamCard}
+      /> */}
+
+      <ProjectCard
+        src="/videos/home/ba-project-card-satym.mp4"
+        alt="Satyam brand design"
+        mediaType="video"
+        className={styles.satyamCard}
+        poster="/images/home/hero/sunny-sankla-poster.webp"
       />
 
       <ProjectCard
-        src="/videos/home/hero/sunny-sankla.mp4"
-        alt="Sunny Sankla founder brand film"
+        src="/videos/home/ba-project-card-IAPL.mp4"
+        alt="Industrial brand campaign"
         mediaType="video"
         className={styles.industryCard}
         poster="/images/home/hero/sunny-sankla-poster.webp"
@@ -55,7 +60,7 @@ export default function HeroWork() {
         imageClassName={styles.grayscaleImage}
       /> */}
 
-      <Annotation className={styles.ideasAnnotation}>
+      <Annotation className={styles.ideasAnnotation} arrowDirection="up">
         Ideas, brought
         <br />
         to life.

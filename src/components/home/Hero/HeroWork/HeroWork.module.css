@@ -1,8 +1,72 @@
 .section {
+  /*
+   * Card size responds to both Hero width and Hero height.
+   * The minimum keeps cards usable on mobile.
+   * The maximum prevents oversized cards on large monitors.
+   */
+  --card-width: clamp(
+    18.5rem,
+    min(38cqw, 76cqh),
+    33.75rem
+  );
+
+  /*
+   * Horizontal composition controls.
+   */
+  --start-space: clamp(
+    1rem,
+    2.4cqw,
+    2.25rem
+  );
+
+  --card-overlap: clamp(
+    2.75rem,
+    4cqw,
+    3.75rem
+  );
+
+  --card-step: calc(
+    var(--card-width) - var(--card-overlap)
+  );
+
+  --end-space: clamp(
+    8rem,
+    22cqw,
+    22rem
+  );
+
+  /*
+   * Shared card positions.
+   */
+  --card-1-x: var(--start-space);
+
+  --card-2-x: calc(
+    var(--card-1-x) + var(--card-step)
+  );
+
+  --card-3-x: calc(
+    var(--card-2-x) + var(--card-step)
+  );
+
+  --card-4-x: calc(
+    var(--card-3-x) + var(--card-step)
+  );
+
+  /*
+   * Section width is generated from its contents.
+   */
+  --section-width: calc(
+    var(--card-4-x)
+    + var(--card-width)
+    + var(--end-space)
+  );
+
   position: relative;
 
-  width: 2500px;
-  min-width: 2500px;
+  flex: 0 0 var(--section-width);
+
+  width: var(--section-width);
+  min-width: var(--section-width);
   height: 100%;
 
   overflow: hidden;
@@ -20,33 +84,46 @@
     );
 }
 
+/* =========================================================
+   PROJECT CARDS
+   ========================================================= */
+
+.identityCard,
+.sanklaCard,
+.satyamCard,
+.industryCard {
+  --card-width: inherit;
+
+  will-change: transform;
+}
+
 /* Card 1 */
 .identityCard {
   top: 20%;
-  left: 35px;
+  left: var(--card-1-x);
 
-  transform: rotate(-16deg);
+  transform: rotate(-10deg);
 }
 
 /* Card 2 */
 .sanklaCard {
-  left: 620px;
+  left: var(--card-2-x);
   bottom: 8%;
 
-  transform: rotate(-16deg);
+  transform: rotate(-10deg);
 }
 
 /* Card 3 */
 .satyamCard {
   top: 15%;
-  left: 1250px;
+  left: var(--card-3-x);
 
   transform: rotate(5deg);
 }
 
 /* Card 4 */
 .industryCard {
-  right: 10px;
+  left: var(--card-4-x);
   bottom: 5%;
 
   transform: rotate(2deg);
@@ -56,211 +133,152 @@
   filter: grayscale(1);
 }
 
-/* Annotations */
-.ideasAnnotation {
-  top: 17%;
-  left: 720px;
+/* =========================================================
+   ANNOTATIONS
+   ========================================================= */
 
-  transform: rotate(-7deg);
-}
+/*
+ * Annotation offsets are connected to their corresponding
+ * cards instead of being positioned against the whole section.
+ */
 
 .visionAnnotation {
-  bottom: 7%;
-  left: 155px;
+  left: calc(
+    var(--card-1-x)
+    + clamp(3rem, 7cqw, 6rem)
+  );
+
+  bottom: 1%;
 
   transform: rotate(-4deg);
 }
 
+.ideasAnnotation {
+  left: calc(
+    var(--card-2-x)
+    + clamp(2.5rem, 6cqw, 5rem)
+  );
+
+  top: 10%;
+
+  transform: rotate(-7deg);
+}
+
 .brandAnnotation {
+  left: calc(
+    var(--card-3-x)
+    + clamp(2.5rem, 6cqw, 5rem)
+  );
+
   bottom: 8%;
-  left: 1270px;
 
   transform: rotate(-5deg);
 }
 
 .recallAnnotation {
+  /*
+   * Positions the annotation closer to the right side
+   * of the fourth card.
+   */
+  left: calc(
+    var(--card-4-x)
+    + var(--card-width)
+    - clamp(5rem, 10cqw, 10rem)
+  );
+
   top: 16%;
-  right: 155px;
 
   transform: rotate(7deg);
 }
 
 /* =========================================================
-   TABLET / SMALL LAPTOP
-   ========================================================= */
-
-@media (max-width: 1100px) {
-  .section {
-    width: 2200px;
-    min-width: 2200px;
-  }
-
-  .identityCard {
-    --card-width: 560px;
-
-    top: 18%;
-    left: 25px;
-  }
-
-  .sanklaCard {
-    --card-width: 610px;
-
-    left: 500px;
-    bottom: 8%;
-  }
-
-  .satyamCard {
-    --card-width: 570px;
-
-    top: 14%;
-    left: 1040px;
-  }
-
-  .industryCard {
-    --card-width: 620px;
-
-    right: 20px;
-    bottom: 6%;
-  }
-
-  .ideasAnnotation {
-    left: 620px;
-  }
-
-  .visionAnnotation {
-    left: 120px;
-  }
-
-  .brandAnnotation {
-    left: 1100px;
-  }
-
-  .recallAnnotation {
-    right: 100px;
-  }
-}
-
-/* =========================================================
-   MOBILE HORIZONTAL ARTBOARD
+   MOBILE COMPOSITION
    ========================================================= */
 
 @media (max-width: 767px) {
   .section {
-    width: 1720px;
-    min-width: 1720px;
+    /*
+     * Mobile cards sit sequentially with a small gap,
+     * rather than overlapping like the desktop composition.
+     */
+    --card-width: clamp(
+      18.5rem,
+      min(82cqw, 48cqh),
+      21rem
+    );
+
+    --start-space: clamp(
+      1rem,
+      4cqw,
+      1.5rem
+    );
+
+    --card-step: calc(
+      var(--card-width)
+      + clamp(1.5rem, 6cqw, 2.5rem)
+    );
+
+    --end-space: clamp(
+      5rem,
+      22cqw,
+      8rem
+    );
   }
 
-  /*
-    Card width is capped by ProjectCard.module.css:
-
-    width: min(var(--card-width), 86vw);
-
-    Therefore, these preferred widths never overflow
-    the mobile viewport excessively.
-  */
-
   .identityCard {
-    --card-width: 520px;
-
     top: 12%;
-    left: 20px;
 
     transform: rotate(-10deg);
   }
 
   .sanklaCard {
-    --card-width: 520px;
-
-    left: 390px;
     bottom: 9%;
 
     transform: rotate(-10deg);
   }
 
   .satyamCard {
-    --card-width: 520px;
-
     top: 12%;
-    left: 770px;
 
     transform: rotate(5deg);
   }
 
   .industryCard {
-    --card-width: 520px;
-
-    right: auto;
     bottom: 7%;
-    left: 1140px;
 
     transform: rotate(2deg);
   }
 
   .ideasAnnotation {
     top: 9%;
-    left: 430px;
 
     transform: rotate(-5deg);
   }
 
   .visionAnnotation {
     bottom: 4%;
-    left: 65px;
 
     transform: rotate(-3deg);
   }
 
   .brandAnnotation {
     bottom: 5%;
-    left: 820px;
 
     transform: rotate(-4deg);
   }
 
   .recallAnnotation {
     top: 9%;
-    right: auto;
-    left: 1390px;
 
     transform: rotate(5deg);
   }
 }
 
-/* =========================================================
-   SMALL MOBILE
-   ========================================================= */
-
-@media (max-width: 430px) {
-  .section {
-    width: 1580px;
-    min-width: 1580px;
-  }
-
-  .identityCard {
-    left: 16px;
-  }
-
-  .sanklaCard {
-    left: 355px;
-  }
-
-  .satyamCard {
-    left: 700px;
-  }
-
+@media (prefers-reduced-motion: reduce) {
+  .identityCard,
+  .sanklaCard,
+  .satyamCard,
   .industryCard {
-    left: 1045px;
-  }
-
-  .ideasAnnotation {
-    left: 385px;
-  }
-
-  .brandAnnotation {
-    left: 750px;
-  }
-
-  .recallAnnotation {
-    left: 1280px;
+    will-change: auto;
   }
 }

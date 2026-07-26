@@ -1,23 +1,47 @@
+/* =========================================================
+   HERO CLOSING SECTION
+   ========================================================= */
+
 .section {
+  --section-width: clamp(
+    81.25rem,
+    132cqw,
+    118.75rem
+  );
+
   position: relative;
 
-  width: 1900px;
-  min-width: 1900px;
+  flex: 0 0 var(--section-width);
+
+  width: var(--section-width);
+  min-width: var(--section-width);
   height: 100%;
 
   overflow: hidden;
 }
 
-.glow {
+/* =========================================================
+   BACKGROUND GLOW
+   ========================================================= */
+
+/* .glow {
   position: absolute;
 
   top: 14%;
   left: 28%;
 
-  width: 980px;
-  height: 660px;
+  width: clamp(
+    44rem,
+    min(68cqw, 150cqh),
+    61.25rem
+  );
 
-  border-radius: 48% 52% 47% 53% / 55% 44% 56% 45%;
+  height: auto;
+  aspect-ratio: 98 / 66;
+
+  border-radius:
+    48% 52% 47% 53% /
+    55% 44% 56% 45%;
 
   background: radial-gradient(
     circle at center,
@@ -26,23 +50,38 @@
     transparent 73%
   );
 
-  filter: blur(8px);
+  filter: blur(
+    clamp(
+      0.35rem,
+      1cqh,
+      0.5rem
+    )
+  );
+
   transform: rotate(-14deg);
 
   pointer-events: none;
-}
+} */
+
+/* =========================================================
+   QUOTE
+   ========================================================= */
 
 .quote {
   position: absolute;
   z-index: 4;
 
   top: 50%;
-  left: 110px;
+  left: clamp(
+    4.5rem,
+    5.8%,
+    6.875rem
+  );
 
   display: flex;
   flex-direction: column;
 
-  width: 1550px;
+  width: 82%;
   margin: 0;
 
   color: #ffffff;
@@ -54,7 +93,8 @@
     Georgia,
     serif;
 
-  font-size: 112px;
+  font-size: clamp(6.75rem, min(8cqw, 12cqh), 13rem);
+
   font-weight: 400;
   line-height: 0.94;
   letter-spacing: -0.06em;
@@ -64,66 +104,108 @@
 
 .quoteLine {
   display: block;
+
   white-space: nowrap;
 }
-
+.secondLine {
+  margin-left: 10%;
+}
 .goldLine {
-  margin-top: 25px;
-  margin-left: 300px;
+  margin-top: clamp(
+    1.25rem,
+    3cqh,
+    1.5625rem
+  );
+
+  margin-left: 19.5%;
 
   color: #f4ad00;
 }
+
+/* =========================================================
+   CTA
+   ========================================================= */
 
 .cta {
   position: absolute;
   z-index: 6;
 
-  right: 75px;
-  bottom: 65px;
+  right: clamp(
+    2.75rem,
+    4cqw,
+    4.6875rem
+  );
+
+  bottom: clamp(
+    3rem,
+    8cqh,
+    4.0625rem
+  );
 }
 
 .mobileCta {
   display: none;
 }
 
-@media (max-width: 1100px) {
+/* =========================================================
+   MOBILE HORIZONTAL COMPOSITION
+   ========================================================= */
+
+@container hero (max-width: 47.9375rem) {
   .section {
-    width: 1650px;
-    min-width: 1650px;
+    --section-width: clamp(
+      75rem,
+      310cqw,
+      81.25rem
+    );
   }
 
-  .quote {
-    width: 1400px;
+  /* .glow {
+    top: 17%;
+    left: 24%;
 
-    font-size: 100px;
+    width: clamp(
+      40rem,
+      min(175cqw, 120cqh),
+      52rem
+    );
+  } */
+
+  .quote {
+    left: clamp(
+      3rem,
+      5.4%,
+      4.375rem
+    );
+
+    width: 85%;
+
+    font-size: clamp(5.25rem, min(8cqw, 12cqh), 13rem);
+
+    line-height: 0.96;
   }
 
   .goldLine {
-    margin-left: 230px;
-  }
-}
+    margin-top: clamp(
+      1.1rem,
+      2.8cqh,
+      1.375rem
+    );
 
-@media (max-width: 767px) {
-  .section {
-    width: 1300px;
-    min-width: 1300px;
-  }
-
-  .quote {
-    left: 70px;
-
-    width: 1100px;
-
-    font-size: 78px;
-  }
-
-  .goldLine {
-    margin-top: 22px;
-    margin-left: 130px;
+    margin-left: 12%;
   }
 
   .cta {
-    right: 45px;
-    bottom: 70px;
+    right: clamp(
+      2rem,
+      8cqw,
+      2.8125rem
+    );
+
+    bottom: clamp(
+      3.5rem,
+      10cqh,
+      4.375rem
+    );
   }
 }

@@ -16,7 +16,7 @@ export default function HeroBackgroundVideo() {
         poster="/images/home/hero/hero-background-poster.webp"
       >
         <source
-          src="/videos/home/hero/hero-background.mp4"
+          src="/videos/home/ba-hero-bg-video.mp4"
           type="video/mp4"
         />
       </video>

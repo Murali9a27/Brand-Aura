@@ -26,9 +26,9 @@
   opacity: 0.42;
 
   filter:
-    grayscale(0.65)
-    contrast(1.1)
-    brightness(0.55);
+    grayscale(0.95)
+    contrast(0.9)
+    brightness(0.85);
 
   transform: translate(-50%, -50%) scale(1.02);
 }
@@ -39,7 +39,7 @@
 
   inset: 0;
 
-  background: rgba(0, 0, 0, 0.55);
+  /* background: rgba(0, 0, 0, 0.55); */
 }
 
 /* Soft Brand Aura golden glow */
@@ -48,7 +48,7 @@
 
   inset: 0;
 
-  background:
+  /* background:
     radial-gradient(
       circle at 26% 46%,
       rgba(198, 137, 14, 0.2) 0%,
@@ -59,7 +59,7 @@
       circle at 72% 42%,
       rgba(244, 180, 26, 0.1) 0%,
       transparent 35%
-    );
+    ); */
 
   mix-blend-mode: screen;
 }

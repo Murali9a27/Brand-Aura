@@ -7,7 +7,7 @@ export default function HeroStatement() {
       data-story-section="statement"
       aria-label="Brand Aura agency statement"
     >
-      <div className={styles.glow} aria-hidden="true" />
+      {/* <div className={styles.glow} aria-hidden="true" /> */}
 
       <p className={styles.statement}>
         <span className={styles.goldText}>Brand Aura</span>{" "}

@@ -11,14 +11,14 @@ export default function HeroClosing() {
       data-story-section="closing"
       aria-label="Brand Aura closing statement"
     >
-      <div className={styles.glow} aria-hidden="true" />
+      {/* <div className={styles.glow} aria-hidden="true" /> */}
 
       <blockquote className={styles.quote}>
         <span className={styles.quoteLine}>
           “Please notice us”
         </span>
 
-        <span className={styles.quoteLine}>
+        <span className={`${styles.quoteLine} ${styles.secondLine}`}>
           and more
         </span>
 
