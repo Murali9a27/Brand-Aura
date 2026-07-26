@@ -53,12 +53,7 @@ export default function HeroWork() {
         className={styles.industryCard}
         poster="/images/home/hero/sunny-sankla-poster.webp"
       />
-      {/* <ProjectCard
-        src="/images/home/hero/industrial-project.webp"
-        alt="Industrial brand campaign"
-        className={styles.industryCard}
-        imageClassName={styles.grayscaleImage}
-      /> */}
+      
 
       <Annotation className={styles.ideasAnnotation} arrowDirection="up">
         Ideas, brought
