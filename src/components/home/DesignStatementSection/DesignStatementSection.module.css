@@ -1,0 +1,339 @@
+/* =========================================================
+   DESIGN STATEMENT SECTION
+   ========================================================= */
+
+.section {
+  position: relative;
+  isolation: isolate;
+
+  container-name: design-statement;
+  container-type: inline-size;
+
+  display: flex;
+  align-items: center;
+
+  width: 100%;
+  min-height: clamp(
+    31rem,
+    68svh,
+    48rem
+  );
+
+  overflow: hidden;
+
+  padding:
+    clamp(4rem, 9svh, 7rem)
+    clamp(2rem, 6cqw, 7rem);
+
+  border-bottom: 1px solid var(--color-border);
+
+  background:
+    radial-gradient(
+      circle at 22% 48%,
+      rgba(30, 83, 162, 0.08),
+      transparent 26%
+    ),
+    #030303;
+
+  color: #ffffff;
+}
+
+/* Subtle top lighting visible in the reference */
+.section::before {
+  position: absolute;
+  z-index: -1;
+
+  inset: 0;
+
+  content: "";
+
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.025),
+    transparent 12%
+  );
+
+  pointer-events: none;
+}
+
+/* =========================================================
+   PARTICLE ORB
+   ========================================================= */
+
+.orbWrapper {
+  position: absolute;
+  z-index: 1;
+
+  top: 50%;
+  left: clamp(
+    2rem,
+    6cqw,
+    7rem
+  );
+
+  width: clamp(
+    15rem,
+    min(27cqw, 53cqh),
+    25rem
+  );
+
+  aspect-ratio: 1;
+
+  transform: translateY(-50%);
+
+  pointer-events: none;
+}
+
+.orb {
+  position: relative;
+  z-index: 2;
+
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+
+  opacity: 0.9;
+
+  filter:
+    contrast(1.08)
+    saturate(1.08);
+
+  mix-blend-mode: screen;
+}
+
+.orbGlow {
+  position: absolute;
+  z-index: 1;
+
+  top: 50%;
+  left: 50%;
+
+  width: 78%;
+  aspect-ratio: 1;
+
+  border-radius: 50%;
+
+  background: radial-gradient(
+    circle,
+    rgba(28, 91, 190, 0.2),
+    rgba(18, 59, 135, 0.08) 42%,
+    transparent 72%
+  );
+
+  filter: blur(
+    clamp(1.5rem, 4cqw, 4rem)
+  );
+
+  transform: translate(-50%, -50%);
+}
+
+/* =========================================================
+   HEADING
+   ========================================================= */
+
+.heading {
+  position: relative;
+  z-index: 3;
+
+  display: flex;
+  flex-direction: column;
+
+  width: min(72%, 68rem);
+
+  margin:
+    0
+    0
+    0
+    clamp(15rem, 27cqw, 28rem);
+
+  font-family:
+    var(--font-display),
+    "Bodoni 72",
+    Didot,
+    Georgia,
+    serif;
+
+  font-size: clamp(
+    4.75rem,
+    min(8.2cqw, 13cqh),
+    8.5rem
+  );
+
+  font-weight: 400;
+  line-height: 0.88;
+  letter-spacing: -0.065em;
+}
+
+.heading span {
+  display: block;
+
+  width: max-content;
+  max-width: 100%;
+
+  white-space: nowrap;
+}
+
+.mutedLine {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.goldLine {
+  color: #f4ad00;
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@container design-statement (max-width: 64rem) {
+  .section {
+    min-height: clamp(
+      29rem,
+      62svh,
+      40rem
+    );
+
+    padding-inline: clamp(
+      1.75rem,
+      5cqw,
+      4rem
+    );
+  }
+
+  .orbWrapper {
+    left: clamp(
+      1rem,
+      4cqw,
+      3rem
+    );
+
+    width: clamp(
+      13rem,
+      min(30cqw, 45cqh),
+      20rem
+    );
+  }
+
+  .heading {
+    width: 72%;
+
+    margin-left: clamp(
+      12rem,
+      25cqw,
+      20rem
+    );
+
+    font-size: clamp(
+      4rem,
+      min(8.8cqw, 11cqh),
+      6.5rem
+    );
+  }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@container design-statement (max-width: 47.9375rem) {
+  .section {
+    align-items: flex-end;
+
+    min-height: clamp(
+      38rem,
+      88svh,
+      46rem
+    );
+
+    padding:
+      clamp(2rem, 5svh, 3rem)
+      clamp(1.25rem, 6cqw, 2rem)
+      clamp(3.5rem, 9svh, 5rem);
+  }
+
+  .orbWrapper {
+    top: 12%;
+    left: 50%;
+
+    width: clamp(
+      13rem,
+      58cqw,
+      19rem
+    );
+
+    transform: translateX(-50%);
+  }
+
+  .heading {
+    width: 100%;
+
+    margin: 0;
+
+    font-size: clamp(
+      3.3rem,
+      14.5cqw,
+      5rem
+    );
+
+    line-height: 0.91;
+  }
+
+  .heading span {
+    width: auto;
+
+    white-space: normal;
+  }
+
+  .goldLine {
+    margin-left: 8%;
+  }
+
+  .mutedLine:last-child {
+    margin-left: 3%;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@container design-statement (max-width: 28rem) {
+  .section {
+    min-height: 40rem;
+  }
+
+  .heading {
+    font-size: clamp(
+      3rem,
+      14.5cqw,
+      4rem
+    );
+  }
+
+  .goldLine,
+  .mutedLine:last-child {
+    margin-left: 0;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .orb {
+    display: none;
+  }
+
+  .orbWrapper {
+    background-image:
+      url("/images/home/design-statement/particle-orb-poster.webp");
+
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+  }
+}
