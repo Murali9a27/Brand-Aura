@@ -1,0 +1,960 @@
+/* =========================================================
+   PORTFOLIO SECTION
+   ========================================================= */
+
+.portfolioSection {
+  position: relative;
+  isolation: isolate;
+
+  container-name: portfolio-showcase;
+  container-type: size;
+
+  width: 100%;
+  height: calc(100svh - var(--header-height));
+  min-height: 38rem;
+
+  overflow: hidden;
+
+  border-bottom: 1px solid var(--color-border);
+
+  background: #020202;
+  color: #ffffff;
+}
+
+/* =========================================================
+   FIXED BACKGROUND
+   ========================================================= */
+
+.portfolioBackground {
+  position: absolute;
+  z-index: 0;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
+
+  background: #020202;
+
+  pointer-events: none;
+}
+
+.portfolioBackgroundGif {
+  position: absolute;
+
+  inset: 0;
+
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+
+  opacity: 0.46;
+
+  filter:
+    brightness(0.58)
+    contrast(1.12)
+    saturate(0.85);
+
+  transform: scale(1.025);
+
+  pointer-events: none;
+  user-select: none;
+
+  -webkit-user-drag: none;
+}
+
+.portfolioBackgroundOverlay {
+  position: absolute;
+  z-index: 1;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.2) 0%,
+      rgba(0, 0, 0, 0.34) 48%,
+      rgba(0, 0, 0, 0.62) 100%
+    ),
+    linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.48) 0%,
+      rgba(0, 0, 0, 0.08) 17%,
+      rgba(0, 0, 0, 0.08) 83%,
+      rgba(0, 0, 0, 0.48) 100%
+    ),
+    radial-gradient(
+      circle at 35% 48%,
+      rgba(255, 255, 255, 0.045),
+      transparent 38%
+    );
+
+  pointer-events: none;
+}
+
+.portfolioBackground::after {
+  position: absolute;
+  z-index: 2;
+
+  inset: 0;
+
+  content: "";
+
+  background-image: repeating-radial-gradient(
+    circle at center,
+    rgba(255, 255, 255, 0.012) 0,
+    rgba(255, 255, 255, 0.012) 1px,
+    transparent 1px,
+    transparent 4px
+  );
+
+  opacity: 0.35;
+
+  pointer-events: none;
+}
+
+/* =========================================================
+   HORIZONTAL VIEWPORT
+   ========================================================= */
+
+.portfolioViewport {
+  position: absolute;
+  z-index: 3;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  background: transparent;
+
+  scrollbar-width: none;
+
+  overscroll-behavior-x: contain;
+  touch-action: pan-x pan-y;
+
+  cursor: grab;
+
+  -webkit-overflow-scrolling: touch;
+}
+
+.portfolioViewport::-webkit-scrollbar {
+  display: none;
+}
+
+.portfolioViewport:focus {
+  outline: none;
+}
+
+.portfolioViewport:focus-visible {
+  outline: 1px solid rgba(244, 173, 0, 0.72);
+  outline-offset: -1px;
+}
+
+.portfolioViewport[data-portfolio-dragging="true"] {
+  cursor: grabbing;
+}
+
+.portfolioViewport[data-portfolio-dragging="true"],
+.portfolioViewport[data-portfolio-dragging="true"] * {
+  user-select: none;
+}
+
+/* =========================================================
+   HORIZONTAL RAIL
+   ========================================================= */
+
+.portfolioRail {
+  /*
+   * Thumbnail sizes
+   */
+  --portfolio-landscape-width: clamp(
+    30rem,
+    min(46cqw, 62cqh),
+    40rem
+  );
+
+  --portfolio-portrait-width: clamp(
+    12rem,
+    min(24cqw, 42cqh),
+    15rem
+  );
+
+  /*
+   * Details card
+   */
+  --portfolio-details-width: clamp(
+    13rem,
+    min(18cqw, 32cqh),
+    17rem
+  );
+
+  /*
+   * Connector dimensions
+   */
+  --portfolio-connector-width: clamp(
+    5rem,
+    8cqw,
+    9rem
+  );
+
+  --portfolio-connector-dot-size: clamp(
+    0.45rem,
+    0.7cqh,
+    0.58rem
+  );
+
+  /*
+   * Moves the connector endpoint inside the top edge
+   * of the details card.
+   */
+  --portfolio-details-anchor-offset: clamp(
+    3rem,
+    5cqw,
+    6rem
+  );
+
+  /*
+   * Thumbnail positions
+   */
+  --portfolio-upper-thumbnail-top: 12%;
+  --portfolio-lower-thumbnail-bottom: 10%;
+
+  /*
+   * Details-card and connector positions.
+   *
+   * The connector endpoint and details-card top use
+   * related variables so they remain connected.
+   */
+  --portfolio-upper-details-top: 18%;
+  --portfolio-upper-connector-start: 31%;
+
+  --portfolio-lower-details-top: 58%;
+  --portfolio-lower-connector-start: 31%;
+
+  /*
+   * Introduction and spacing
+   */
+  --portfolio-intro-width: clamp(
+    34rem,
+    48cqw,
+    48rem
+  );
+
+  --portfolio-item-gap: clamp(
+    7rem,
+    11cqw,
+    12rem
+  );
+
+  --portfolio-start-space: clamp(
+    2rem,
+    4cqw,
+    5rem
+  );
+
+  --portfolio-end-space: clamp(
+    8rem,
+    16cqw,
+    16rem
+  );
+
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+  align-items: stretch;
+
+  gap: var(--portfolio-item-gap);
+
+  box-sizing: border-box;
+
+  width: max-content;
+  min-width: 100%;
+  height: 100%;
+
+  padding-inline:
+    var(--portfolio-start-space)
+    var(--portfolio-end-space);
+
+  background: transparent;
+}
+
+/* =========================================================
+   PROJECT GROUP
+   ========================================================= */
+
+.portfolioProject {
+  position: relative;
+  z-index: 4;
+
+  flex: 0 0 auto;
+
+  height: 100%;
+
+  background: transparent;
+}
+
+/*
+ * Thumbnail width is determined by the ratio passed
+ * through the JSX data attribute.
+ */
+
+.portfolioProject[data-thumbnail-ratio="landscape"] {
+  --portfolio-active-thumbnail-width:
+    var(--portfolio-landscape-width);
+}
+
+.portfolioProject[data-thumbnail-ratio="portrait"] {
+  --portfolio-active-thumbnail-width:
+    var(--portfolio-portrait-width);
+}
+
+/*
+ * Thumbnail-only project
+ */
+
+.portfolioProject[data-portfolio-mode="thumbnail-only"] {
+  width: var(--portfolio-active-thumbnail-width);
+}
+
+/*
+ * Project with thumbnail, connector and details card
+ */
+
+.portfolioProject[data-portfolio-mode="thumbnail-with-details"] {
+  width: calc(
+    var(--portfolio-active-thumbnail-width)
+    + var(--portfolio-connector-width)
+    + var(--portfolio-details-width)
+  );
+}
+
+/* =========================================================
+   PORTFOLIO INTRODUCTION
+   ========================================================= */
+
+.portfolioIntroduction {
+  position: relative;
+  z-index: 5;
+
+  display: grid;
+  place-items: center;
+
+  flex: 0 0 var(--portfolio-intro-width);
+
+  width: var(--portfolio-intro-width);
+  height: 100%;
+
+  background: transparent;
+}
+
+.portfolioOrb {
+  position: absolute;
+
+  width: min(66cqh, 31rem);
+  aspect-ratio: 1;
+
+  border-radius: 50%;
+
+  background:
+    repeating-radial-gradient(
+      circle at 50% 50%,
+      rgba(255, 255, 255, 0.12) 0,
+      rgba(255, 255, 255, 0.12) 1px,
+      transparent 1px,
+      transparent 5px
+    ),
+    radial-gradient(
+      circle at center,
+      rgba(255, 255, 255, 0.08),
+      rgba(255, 255, 255, 0.025) 56%,
+      transparent 74%
+    );
+
+  box-shadow:
+    inset 0 0 5rem rgba(255, 255, 255, 0.025),
+    0 0 5rem rgba(255, 255, 255, 0.025);
+
+  filter: blur(0.1rem);
+
+  opacity: 0.72;
+
+  transform: rotate(-14deg);
+
+  pointer-events: none;
+}
+
+.portfolioIntroductionContent {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+}
+
+.portfolioEyebrow {
+  margin-bottom: clamp(
+    0.5rem,
+    1.2cqh,
+    0.8rem
+  );
+
+  color: rgba(255, 255, 255, 0.7);
+
+  font-family:
+    var(--font-geist-sans),
+    sans-serif;
+
+  font-size: clamp(
+    0.75rem,
+    min(1cqw, 1.7cqh),
+    0.95rem
+  );
+
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.portfolioHeading {
+  margin: 0;
+
+  color: #ffffff;
+
+  font-family:
+    var(--font-display),
+    "Bodoni 72",
+    Didot,
+    Georgia,
+    serif;
+
+  font-size: clamp(
+    3rem,
+    min(4.5cqw, 8cqh),
+    4.5rem
+  );
+
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: -0.055em;
+
+  white-space: nowrap;
+}
+
+/* =========================================================
+   THUMBNAIL POSITIONING
+   ========================================================= */
+
+.portfolioThumbnailPosition {
+  left: 0;
+}
+
+.portfolioProject[data-portfolio-layout="upper"]
+  .portfolioThumbnailPosition {
+  top: var(--portfolio-upper-thumbnail-top);
+  bottom: auto;
+}
+
+.portfolioProject[data-portfolio-layout="lower"]
+  .portfolioThumbnailPosition {
+  top: auto;
+  bottom: var(--portfolio-lower-thumbnail-bottom);
+}
+
+/* =========================================================
+   DETAILS CARD POSITIONING
+   ========================================================= */
+
+.portfolioDetailsPosition {
+  position: absolute;
+  z-index: 5;
+
+  left: calc(
+    var(--portfolio-active-thumbnail-width)
+    + var(--portfolio-connector-width)
+    - 1px
+  );
+
+  width: var(--portfolio-details-width);
+}
+
+/*
+ * Upper-layout details card
+ */
+
+.portfolioProject[data-portfolio-layout="upper"]
+  .portfolioDetailsPosition {
+  top: var(--portfolio-upper-details-top);
+  bottom: auto;
+}
+
+/*
+ * Lower-layout details card
+ */
+
+.portfolioProject[data-portfolio-layout="lower"]
+  .portfolioDetailsPosition {
+  top: var(--portfolio-lower-details-top);
+  bottom: auto;
+}
+
+/* =========================================================
+   CONNECTOR
+   ========================================================= */
+
+.portfolioConnector {
+  position: absolute;
+  z-index: 7;
+
+  left: var(--portfolio-active-thumbnail-width);
+
+  /*
+   * The connector extends inside the details-card width
+   * so the endpoint lands on the card’s top border.
+   */
+  width: calc(
+    var(--portfolio-connector-width)
+    + var(--portfolio-details-anchor-offset)
+  );
+
+  pointer-events: none;
+}
+
+/* Connector line */
+
+.portfolioConnector::before {
+  position: absolute;
+
+  inset: 0;
+
+  content: "";
+
+  border-color: rgba(255, 255, 255, 0.42);
+  border-style: solid;
+  border-width: 0;
+}
+
+/* Shared dot styling */
+
+.portfolioConnector::after,
+.portfolioConnectorDot {
+  position: absolute;
+  z-index: 8;
+
+  width: var(--portfolio-connector-dot-size);
+  aspect-ratio: 1;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.72);
+
+  box-shadow:
+    0 0 0.55rem rgba(255, 255, 255, 0.22),
+    0 0 0.12rem rgba(255, 255, 255, 0.5);
+}
+
+/* End dot pseudo-element */
+
+.portfolioConnector::after {
+  content: "";
+}
+
+/* =========================================================
+   UPPER-LAYOUT CONNECTOR
+   ========================================================= */
+
+/*
+ * Connector starts lower on the thumbnail and curves
+ * upward to the top edge of the details card.
+ */
+
+.portfolioProject[data-portfolio-layout="upper"]
+  .portfolioConnector {
+  top: var(--portfolio-upper-details-top);
+  bottom: auto;
+
+  height: calc(
+    var(--portfolio-upper-connector-start)
+    - var(--portfolio-upper-details-top)
+  );
+}
+
+.portfolioProject[data-portfolio-layout="upper"]
+  .portfolioConnector::before {
+  border-right-width: 1px;
+  border-bottom-width: 1px;
+
+  border-bottom-right-radius: 100%;
+}
+
+/* Thumbnail-side dot */
+
+.portfolioProject[data-portfolio-layout="upper"]
+  .portfolioConnectorDot {
+  bottom: 0;
+  left: 0;
+
+  transform: translate(-50%, 50%);
+}
+
+/* Details-card top dot */
+
+.portfolioProject[data-portfolio-layout="upper"]
+  .portfolioConnector::after {
+  top: 0;
+  right: 0;
+
+  transform: translate(50%, -50%);
+}
+
+/* =========================================================
+   LOWER-LAYOUT CONNECTOR
+   ========================================================= */
+
+/*
+ * Connector starts higher on the thumbnail and curves
+ * downward to the top edge of the details card.
+ */
+
+.portfolioProject[data-portfolio-layout="lower"]
+  .portfolioConnector {
+  top: var(--portfolio-lower-connector-start);
+  bottom: auto;
+
+  height: calc(
+    var(--portfolio-lower-details-top)
+    - var(--portfolio-lower-connector-start)
+  );
+}
+
+.portfolioProject[data-portfolio-layout="lower"]
+  .portfolioConnector::before {
+  border-top-width: 1px;
+  border-right-width: 1px;
+
+  border-top-right-radius: 100%;
+}
+
+/* Thumbnail-side dot */
+
+.portfolioProject[data-portfolio-layout="lower"]
+  .portfolioConnectorDot {
+  top: 0;
+  left: 0;
+
+  transform: translate(-50%, -50%);
+}
+
+/* Details-card top dot */
+
+.portfolioProject[data-portfolio-layout="lower"]
+  .portfolioConnector::after {
+  right: 0;
+  bottom: 0;
+
+  transform: translate(50%, 50%);
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 64rem) {
+  .portfolioSection {
+    min-height: 40rem;
+  }
+}
+
+@container portfolio-showcase (max-width: 64rem) {
+  .portfolioRail {
+    --portfolio-landscape-width: clamp(
+      28rem,
+      min(56cqw, 64cqh),
+      36rem
+    );
+
+    --portfolio-portrait-width: clamp(
+      15rem,
+      min(27cqw, 44cqh),
+      18rem
+    );
+
+    --portfolio-details-width: clamp(
+      12.5rem,
+      22cqw,
+      15.5rem
+    );
+
+    --portfolio-connector-width: clamp(
+      4.5rem,
+      8cqw,
+      7rem
+    );
+
+    --portfolio-details-anchor-offset: clamp(
+      2.75rem,
+      5.5cqw,
+      5rem
+    );
+
+    --portfolio-upper-thumbnail-top: 12%;
+    --portfolio-lower-thumbnail-bottom: 10%;
+
+    --portfolio-upper-details-top: 18%;
+    --portfolio-upper-connector-start: 30%;
+
+    --portfolio-lower-details-top: 56%;
+    --portfolio-lower-connector-start: 31%;
+
+    --portfolio-intro-width: clamp(
+      30rem,
+      66cqw,
+      40rem
+    );
+
+    --portfolio-item-gap: clamp(
+      5rem,
+      10cqw,
+      8rem
+    );
+
+    --portfolio-start-space: clamp(
+      1.5rem,
+      4cqw,
+      3rem
+    );
+
+    --portfolio-end-space: clamp(
+      6rem,
+      14cqw,
+      12rem
+    );
+  }
+
+  .portfolioOrb {
+    width: min(58cqh, 26rem);
+  }
+
+  .portfolioHeading {
+    font-size: clamp(
+      2.8rem,
+      6cqw,
+      4rem
+    );
+  }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 47.9375rem) {
+  .portfolioSection {
+    min-height: 40rem;
+  }
+}
+
+@container portfolio-showcase (max-width: 47.9375rem) {
+  .portfolioRail {
+    --portfolio-landscape-width: clamp(
+      19rem,
+      min(84cqw, 52cqh),
+      23rem
+    );
+
+    --portfolio-portrait-width: clamp(
+      12rem,
+      min(52cqw, 44cqh),
+      15rem
+    );
+
+    --portfolio-details-width: clamp(
+      11.5rem,
+      44cqw,
+      13rem
+    );
+
+    --portfolio-connector-width: clamp(
+      3.5rem,
+      12cqw,
+      5rem
+    );
+
+    --portfolio-connector-dot-size: 0.5rem;
+
+    --portfolio-details-anchor-offset: clamp(
+      2rem,
+      8cqw,
+      3.5rem
+    );
+
+    --portfolio-upper-thumbnail-top: 13%;
+    --portfolio-lower-thumbnail-bottom: 11%;
+
+    --portfolio-upper-details-top: 16%;
+    --portfolio-upper-connector-start: 29%;
+
+    --portfolio-lower-details-top: 52%;
+    --portfolio-lower-connector-start: 30%;
+
+    --portfolio-intro-width: clamp(
+      25rem,
+      104cqw,
+      31rem
+    );
+
+    --portfolio-item-gap: clamp(
+      4rem,
+      16cqw,
+      6rem
+    );
+
+    --portfolio-start-space: clamp(
+      1rem,
+      4cqw,
+      1.5rem
+    );
+
+    --portfolio-end-space: clamp(
+      4rem,
+      18cqw,
+      7rem
+    );
+  }
+
+  .portfolioBackgroundGif {
+    opacity: 0.38;
+  }
+
+  .portfolioIntroduction {
+    height: 100%;
+  }
+
+  .portfolioOrb {
+    width: min(52cqh, 19rem);
+  }
+
+  .portfolioHeading {
+    font-size: clamp(
+      2.5rem,
+      11cqw,
+      3.4rem
+    );
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 30rem) {
+  .portfolioSection {
+    min-height: 38rem;
+  }
+}
+
+@container portfolio-showcase (max-width: 30rem) {
+  .portfolioRail {
+    --portfolio-landscape-width: clamp(
+      17rem,
+      84cqw,
+      20rem
+    );
+
+    --portfolio-portrait-width: clamp(
+      10.5rem,
+      48cqw,
+      13rem
+    );
+
+    --portfolio-details-width: clamp(
+      11rem,
+      47cqw,
+      12.25rem
+    );
+
+    --portfolio-connector-width: clamp(
+      3rem,
+      12cqw,
+      4rem
+    );
+
+    --portfolio-connector-dot-size: 0.46rem;
+
+    --portfolio-details-anchor-offset: clamp(
+      1.5rem,
+      7cqw,
+      2.5rem
+    );
+
+    --portfolio-upper-thumbnail-top: 13%;
+    --portfolio-lower-thumbnail-bottom: 11%;
+
+    --portfolio-upper-details-top: 15%;
+    --portfolio-upper-connector-start: 28%;
+
+    --portfolio-lower-details-top: 50%;
+    --portfolio-lower-connector-start: 29%;
+
+    --portfolio-intro-width: clamp(
+      23rem,
+      108cqw,
+      28rem
+    );
+
+    --portfolio-item-gap: clamp(
+      3.5rem,
+      15cqw,
+      5rem
+    );
+
+    --portfolio-start-space: 1rem;
+
+    --portfolio-end-space: clamp(
+      3rem,
+      15cqw,
+      5rem
+    );
+  }
+
+  .portfolioHeading {
+    font-size: clamp(
+      2.2rem,
+      11cqw,
+      2.9rem
+    );
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .portfolioBackgroundGif {
+    display: none;
+  }
+
+  .portfolioBackground {
+    background:
+      linear-gradient(
+        rgba(0, 0, 0, 0.42),
+        rgba(0, 0, 0, 0.68)
+      ),
+      url("/images/home/portfolio/portfolio-background-poster.webp")
+        center / cover no-repeat;
+  }
+}

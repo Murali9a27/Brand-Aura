@@ -1,0 +1,116 @@
+.portfolioDetailsCard {
+  position: absolute;
+  z-index: 7;
+
+  width: var(--portfolio-details-width);
+
+  padding: clamp(0.9rem, 1.8cqh, 1.25rem);
+
+  border: 1px solid #696969;
+  background: rgba(34, 34, 34, 0.8);
+  backdrop-filter: blur(15.625px);
+  -webkit-backdrop-filter: blur(15.625px);
+  border-radius: clamp(0.75rem, 1.5cqh, 1rem);
+
+  box-shadow:
+    0 clamp(1rem, 3cqh, 1.75rem) clamp(2.5rem, 7cqh, 4rem) rgba(0, 0, 0, 0.36),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+.portfolioCategory {
+  display: flex;
+  align-items: center;
+
+  gap: 0.4rem;
+
+  margin-bottom: clamp(0.35rem, 0.8cqh, 0.5rem);
+
+  color: rgba(255, 255, 255, 0.64);
+
+  font-family: var(--font-geist-sans), sans-serif;
+
+  font-size: clamp(0.62rem, 1.3cqh, 0.72rem);
+
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.portfolioCategory::before {
+  width: 0.35rem;
+  aspect-ratio: 1;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background: #ffffff;
+
+  content: "";
+}
+
+.portfolioProjectTitle {
+  margin: 0 0 clamp(0.45rem, 0.9cqh, 0.6rem);
+
+  color: #ffffff;
+
+  font-family: var(--font-geist-sans), sans-serif;
+
+  font-size: clamp(1rem, min(1.25cqw, 2.2cqh), 1.25rem);
+
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.portfolioProjectDescription {
+  margin: 0 0 clamp(0.85rem, 1.8cqh, 1.1rem);
+
+  color: rgba(255, 255, 255, 0.76);
+
+  font-family: var(--font-geist-sans), sans-serif;
+
+  font-size: clamp(0.7rem, min(0.82cqw, 1.5cqh), 0.84rem);
+
+  font-weight: 400;
+  line-height: 1.45;
+}
+
+.portfolioCaseStudyButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: clamp(1.9rem, 4cqh, 2.2rem);
+
+  padding: 0.45rem clamp(0.7rem, 1cqw, 0.9rem);
+
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0.1rem;
+
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.18), transparent 55%), #0d0d0d;
+
+  color: #ffffff;
+
+  font-family: var(--font-geist-sans), sans-serif;
+
+  font-size: clamp(0.58rem, min(0.7cqw, 1.2cqh), 0.7rem);
+
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0.035em;
+  text-decoration: none;
+  text-transform: uppercase;
+
+  transition:
+    border-color 250ms ease,
+    background-color 250ms ease,
+    transform 250ms ease;
+}
+
+
+
+@media (prefers-reduced-motion: reduce) {
+  .portfolioCaseStudyButton {
+    transition: none;
+  }
+}

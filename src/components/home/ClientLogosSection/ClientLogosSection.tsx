@@ -5,31 +5,31 @@ import styles from "./ClientLogosSection.module.css";
 const clients = [
   {
     name: "British Learning",
-    logo: "/images/home/clients/british-learning.svg",
+    logo: "/images/clients/british-learning.png",
   },
   {
     name: "Aqura Pride",
-    logo: "/images/home/clients/aqura-pride.svg",
+    logo: "/images/clients/aqura-pride.png",
   },
   {
     name: "SKILS",
-    logo: "/images/home/clients/skils.svg",
+    logo: "/images/clients/skils.png",
   },
   {
     name: "SunArth",
-    logo: "/images/home/clients/sunarth.svg",
+    logo: "/images/clients/sunarth.png",
   },
   {
     name: "Learnovate",
-    logo: "/images/home/clients/learnovate.svg",
+    logo: "/images/clients/learnovate.svg",
   },
   {
     name: "Global Valley",
-    logo: "/images/home/clients/global-valley.svg",
+    logo: "/images/clients/global-valley.png",
   },
   {
     name: "Sellability",
-    logo: "/images/home/clients/sellability.svg",
+    logo: "/images/clients/sellability.png",
   },
 ];
 

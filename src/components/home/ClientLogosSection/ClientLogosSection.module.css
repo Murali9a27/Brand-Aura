@@ -14,11 +14,7 @@
 
   width: 100%;
 
-  min-height: clamp(
-    30rem,
-    66svh,
-    46rem
-  );
+  min-height: clamp(30rem, 66svh, 46rem);
 
   overflow: hidden;
 
@@ -37,16 +33,8 @@
   content: "";
 
   background:
-    linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.015),
-      transparent 16%
-    ),
-    radial-gradient(
-      circle at 50% 50%,
-      rgba(255, 255, 255, 0.018),
-      transparent 58%
-    );
+    linear-gradient(180deg, rgba(255, 255, 255, 0.015), transparent 16%),
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.018), transparent 58%);
 
   pointer-events: none;
 }
@@ -56,11 +44,7 @@
    ========================================================= */
 
 .viewport {
-  --logo-gap: clamp(
-    1.75rem,
-    3.2cqw,
-    3.75rem
-  );
+  --logo-gap: clamp(1.75rem, 3.2cqw, 3.75rem);
 
   position: relative;
 
@@ -71,21 +55,9 @@
    * Creates the partially visible cards at the screen edges,
    * matching the supplied design.
    */
-  mask-image: linear-gradient(
-    90deg,
-    transparent 0%,
-    #000 5%,
-    #000 95%,
-    transparent 100%
-  );
+  mask-image: linear-gradient(90deg, transparent 0%, #000 5%, #000 95%, transparent 100%);
 
-  -webkit-mask-image: linear-gradient(
-    90deg,
-    transparent 0%,
-    #000 5%,
-    #000 95%,
-    transparent 100%
-  );
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 5%, #000 95%, transparent 100%);
 }
 
 /* =========================================================
@@ -101,11 +73,7 @@
 
   transform: translate3d(0, 0, 0);
 
-  animation:
-    client-logo-marquee
-    var(--marquee-duration)
-    linear
-    infinite;
+  animation: client-logo-marquee var(--marquee-duration) linear infinite;
 
   will-change: transform;
 }
@@ -144,44 +112,24 @@
 
   flex: 0 0 auto;
 
-  width: clamp(
-    10.5rem,
-    14cqw,
-    15.625rem
-  );
+  width: clamp(10.5rem, 14cqw, 15.625rem);
 
   aspect-ratio: 1;
 
   overflow: hidden;
 
-  padding: clamp(
-    1.5rem,
-    2.7cqw,
-    2.75rem
-  );
+  padding: clamp(1.5rem, 2.7cqw, 2.75rem);
 
   border: 1px solid rgba(255, 255, 255, 0.025);
 
-  border-radius: clamp(
-    0.9rem,
-    1.3cqw,
-    1.25rem
-  );
+  border-radius: clamp(0.9rem, 1.3cqw, 1.25rem);
 
   background:
-    radial-gradient(
-      circle at 50% 100%,
-      rgba(255, 255, 255, 0.025),
-      transparent 60%
-    ),
-    #191919;
+    radial-gradient(circle at 50% 100%, rgba(255, 255, 255, 0.025), transparent 60%), #191919;
 
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.015),
-    0
-    clamp(1.25rem, 3svh, 2rem)
-    clamp(2.5rem, 6svh, 4rem)
-    rgba(0, 0, 0, 0.22);
+    0 clamp(1.25rem, 3svh, 2rem) clamp(2.5rem, 6svh, 4rem) rgba(0, 0, 0, 0.22);
 
   transform: translateZ(0);
 
@@ -200,11 +148,7 @@
 
   content: "";
 
-  background: radial-gradient(
-    circle at 50% 45%,
-    rgba(255, 255, 255, 0.06),
-    transparent 66%
-  );
+  background: radial-gradient(circle at 50% 45%, rgba(255, 255, 255, 0.06), transparent 66%);
 
   opacity: 0;
 
@@ -220,18 +164,11 @@
 .logo {
   object-fit: contain;
 
-  padding: clamp(
-    1rem,
-    10%,
-    2rem
-  );
+  padding: clamp(1rem, 10%, 2rem);
 
   opacity: 0.66;
 
-  filter:
-    grayscale(1)
-    saturate(0)
-    brightness(0.85);
+  filter: grayscale(1) saturate(0) brightness(0.85);
 
   transform: scale(0.94);
 
@@ -248,10 +185,7 @@
 
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.025),
-    0
-    clamp(1.5rem, 4svh, 2.5rem)
-    clamp(3rem, 8svh, 5rem)
-    rgba(0, 0, 0, 0.32);
+    0 clamp(1.5rem, 4svh, 2.5rem) clamp(3rem, 8svh, 5rem) rgba(0, 0, 0, 0.32);
 
   transform: translateY(-2%);
 }
@@ -264,10 +198,7 @@
 .logoCard:active .logo {
   opacity: 1;
 
-  filter:
-    grayscale(0)
-    saturate(1)
-    brightness(1);
+  filter: grayscale(0) saturate(1) brightness(1);
 
   transform: scale(1);
 }
@@ -297,11 +228,7 @@
 
 @container client-logos (max-width: 64rem) {
   .section {
-    min-height: clamp(
-      26rem,
-      58svh,
-      38rem
-    );
+    min-height: clamp(26rem, 58svh, 38rem);
   }
 
   .track {
@@ -309,11 +236,7 @@
   }
 
   .logoCard {
-    width: clamp(
-      10rem,
-      22cqw,
-      13rem
-    );
+    width: clamp(10rem, 22cqw, 13rem);
   }
 }
 
@@ -323,35 +246,15 @@
 
 @container client-logos (max-width: 47.9375rem) {
   .section {
-    min-height: clamp(
-      23rem,
-      52svh,
-      31rem
-    );
+    min-height: clamp(23rem, 52svh, 31rem);
   }
 
   .viewport {
-    --logo-gap: clamp(
-      1rem,
-      5cqw,
-      1.75rem
-    );
+    --logo-gap: clamp(1rem, 5cqw, 1.75rem);
 
-    mask-image: linear-gradient(
-      90deg,
-      transparent 0%,
-      #000 9%,
-      #000 91%,
-      transparent 100%
-    );
+    mask-image: linear-gradient(90deg, transparent 0%, #000 9%, #000 91%, transparent 100%);
 
-    -webkit-mask-image: linear-gradient(
-      90deg,
-      transparent 0%,
-      #000 9%,
-      #000 91%,
-      transparent 100%
-    );
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 9%, #000 91%, transparent 100%);
   }
 
   .track {
@@ -359,31 +262,15 @@
   }
 
   .logoCard {
-    width: clamp(
-      9rem,
-      42cqw,
-      11.5rem
-    );
+    width: clamp(9rem, 42cqw, 11.5rem);
 
-    padding: clamp(
-      1.25rem,
-      7cqw,
-      1.75rem
-    );
+    padding: clamp(1.25rem, 7cqw, 1.75rem);
 
-    border-radius: clamp(
-      0.8rem,
-      4cqw,
-      1rem
-    );
+    border-radius: clamp(0.8rem, 4cqw, 1rem);
   }
 
   .logo {
-    padding: clamp(
-      0.75rem,
-      8%,
-      1.25rem
-    );
+    padding: clamp(0.75rem, 8%, 1.25rem);
   }
 }
 
@@ -423,4 +310,3 @@
     transition: none;
   }
 }
-
