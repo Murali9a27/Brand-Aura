@@ -18,20 +18,20 @@ const tools = [
     icon: "/icons/tools/sketch.svg",
   },
   {
-    name: "Framer",
-    icon: "/icons/tools/framer.svg",
+    name: "Illustrator",
+    icon: "/icons/tools/illustrator.svg",
   },
   {
-    name: "Adobe",
-    icon: "/icons/tools/adobe.svg",
+    name: "Photoshop",
+    icon: "/icons/tools/photoshop.svg",
   },
   {
-    name: "ChatGPT",
-    icon: "/icons/tools/chatgpt.svg",
+    name: "Premiere-Pro",
+    icon: "/icons/tools/premiere-pro.svg",
   },
   {
-    name: "Gemini",
-    icon: "/icons/tools/gemini.svg",
+    name: "Corel-Draw",
+    icon: "/icons/tools/coreldraw.svg",
   },
 ];
 
@@ -83,7 +83,7 @@ export default function HeroIntro() {
             onClick={() => setIsVideoOpen(true)}
           >
             <Image
-              src="/images/home/hero/life-at-brand-aura.webp"
+              src="/images/home/life-at-brand-aura.png"
               alt=""
               fill
               priority
@@ -113,7 +113,7 @@ export default function HeroIntro() {
         isOpen={isVideoOpen}
         onClose={() => setIsVideoOpen(false)}
         src="/videos/home/ba-hero-bg-video.mp4"
-        poster="/images/home/hero/life-at-brand-aura.webp"
+        poster="/images/home/life-at-brand-aura.png"
         title="Life at Brand Aura"
       />
     </>

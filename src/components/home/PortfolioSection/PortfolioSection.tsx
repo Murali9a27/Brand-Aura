@@ -22,14 +22,14 @@ type PortfolioProject = {
 
 const openingProject: PortfolioProject = {
   name: "Brand Aura Campaign",
-  thumbnail: "/images/home/portfolio/project-1.png",
+  thumbnail: "/images/home/portfolio/project-3.png",
   ratio: "portrait",
   layout: "upper",
 };
 
 const openingProject2: PortfolioProject = {
   name: "Brand Aura Campaign",
-  thumbnail: "/images/home/portfolio/project-3.png",
+  thumbnail: "/images/home/portfolio/project-1.png",
   ratio: "portrait",
   layout: "upper",
 };
@@ -71,12 +71,7 @@ const portfolioProjects: PortfolioProject[] = [
       href: "/portfolio/aqura-pride",
     },
   },
-  {
-    name: "Learnovate",
-    thumbnail: "/images/home/portfolio/learnovate-mobile.webp",
-    ratio: "portrait",
-    layout: "lower",
-  },
+  
 ];
 
 export default function PortfolioSection() {
@@ -94,7 +89,7 @@ export default function PortfolioSection() {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           className={styles.portfolioBackgroundGif}
-          src="/images/home/portfolio-background.gif"
+          src="/images/home/portfolio/background.gif"
           alt=""
           draggable={false}
         />
@@ -161,7 +156,7 @@ export default function PortfolioSection() {
             aria-label={`${openingProject.name} portfolio project`}
             style={{
               position: "absolute",
-              bottom: "-50%",
+              bottom: "-65%",
               left: "15%",
             }}
           >
@@ -176,7 +171,7 @@ export default function PortfolioSection() {
 
           {/* 2. Portfolio introduction */}
           <div className={styles.portfolioIntroduction} data-portfolio-introduction>
-            <span className={styles.portfolioOrb} aria-hidden="true" />
+            
 
             <div className={styles.portfolioIntroductionContent}>
               <span className={styles.portfolioEyebrow}>What We Do</span>

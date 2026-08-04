@@ -1,26 +1,26 @@
 import Image from "next/image";
-
 import styles from "./Annotation.module.css";
 
 interface AnnotationProps {
   children: React.ReactNode;
   className?: string;
   arrowDirection?: "down" | "up";
+  arrowSrc?: string;
 }
 
 export default function Annotation({
   children,
   className = "",
   arrowDirection = "down",
+  arrowSrc = "/icons/shared/arrow-loop.svg",
 }: AnnotationProps) {
-  const classes =
-    `${styles.annotation} ${className}`.trim();
+  const classes = `${styles.annotation} ${className}`.trim();
 
   return (
-     <div className={classes}>
+    <div className={classes}>
       {arrowDirection === "up" && (
         <Image
-          src="/icons/shared/arrow-loop.svg"
+          src={arrowSrc}
           alt=""
           width={90}
           height={90}
@@ -32,7 +32,7 @@ export default function Annotation({
 
       {arrowDirection === "down" && (
         <Image
-          src="/icons/shared/arrow-loop.svg"
+          src={arrowSrc}
           alt=""
           width={90}
           height={90}

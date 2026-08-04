@@ -26,7 +26,7 @@ export default function HeroStatement() {
         className={styles.directionArrow}
         aria-hidden="true"
       >
-        ↗
+        <img src="/images/home/hero-statement-arrow.png" alt="Direction arrow" />
       </span>
     </section>
   );

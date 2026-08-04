@@ -45,3 +45,6 @@ public/videos/*.mp4
 public/videos/*.mov
 public/videos/*.webm
 public/videos/*.avi
+
+# Image Folder and Image Files
+public/images/*.gif

@@ -48,7 +48,7 @@
 
   color: #ffffff;
 
-  font-family: var(--font-geist-sans), sans-serif;
+  font-family: var(--font-poppins), sans-serif;
   text-decoration: none;
 
   cursor: pointer;
@@ -120,7 +120,7 @@
 }
 
 .button:hover {
-  border-color: rgba(244, 180, 26, 0.7);
+  /* border-color: rgba(244, 180, 26, 0.7); */
   background-color: rgba(17, 17, 17, 0.96);
 }
 
@@ -155,7 +155,7 @@
 }
 
 .button:focus-visible {
-  outline: 2px solid rgba(244, 180, 26, 0.9);
+  /* outline: 2px solid rgba(244, 180, 26, 0.9); */
   outline-offset: -0.25rem;
 }
 

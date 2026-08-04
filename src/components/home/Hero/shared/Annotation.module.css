@@ -34,7 +34,7 @@
 
   color: rgba(255, 255, 255, 0.37);
 
-  font-family: var(--font-geist-sans), sans-serif;
+  font-family: var(--font-poppins), sans-serif;
   font-size: var(--annotation-font-size);
   font-weight: 400;
   line-height: 1.12;
@@ -65,5 +65,5 @@
   margin-top: 0;
   margin-bottom: var(--annotation-gap);
 
-  transform: rotate(180deg);
+  /* transform: rotate(180deg); */
 }

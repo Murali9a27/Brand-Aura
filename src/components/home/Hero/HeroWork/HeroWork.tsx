@@ -53,21 +53,25 @@ export default function HeroWork() {
         className={styles.industryCard}
         poster="/images/home/hero/sunny-sankla-poster.webp"
       />
+
       
 
-      <Annotation className={styles.ideasAnnotation} arrowDirection="up">
-        Ideas, brought
-        <br />
-        to life.
-      </Annotation>
-
-      <Annotation className={styles.visionAnnotation}>
+      <Annotation className={styles.visionAnnotation} arrowDirection="up" arrowSrc="/images/home/hero-work-an-1.png">
         Vision into
         <br />
         motion.
       </Annotation>
 
-      <Annotation className={styles.brandAnnotation}>
+      <Annotation
+        className={styles.ideasAnnotation}
+        arrowSrc="/images/home/hero-work-an-2.png"
+      >
+        Ideas, brought
+        <br />
+        to life.
+      </Annotation>
+
+      <Annotation className={styles.brandAnnotation} arrowDirection="up" arrowSrc="/images/home/hero-work-an-3.png">
         Your brand
         <br />
         deserves more
@@ -75,7 +79,7 @@ export default function HeroWork() {
         than content.
       </Annotation>
 
-      <Annotation className={styles.recallAnnotation}>
+      <Annotation className={styles.recallAnnotation} arrowSrc="/images/home/hero-work-an-4.png">
         Stories into
         <br />
         recall.

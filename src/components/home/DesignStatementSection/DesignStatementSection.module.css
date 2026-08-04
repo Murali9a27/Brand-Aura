@@ -66,16 +66,16 @@
 
   top: 50%;
   left: clamp(
-    2rem,
-    6cqw,
-    7rem
+    -2rem,
+    -6cqw,
+    -7rem
   );
 
-  width: clamp(
+  /* width: clamp(
     15rem,
     min(27cqw, 53cqh),
     25rem
-  );
+  ); */
 
   aspect-ratio: 1;
 
@@ -95,13 +95,15 @@
 
   object-fit: contain;
 
-  opacity: 0.9;
+  opacity: 0.6;
 
   filter:
     contrast(1.08)
     saturate(1.08);
 
   mix-blend-mode: screen;
+  user-select: none;
+  pointer-events: none;
 }
 
 .orbGlow {
@@ -150,21 +152,17 @@
     clamp(15rem, 27cqw, 28rem);
 
   font-family:
-    var(--font-display),
-    "Bodoni 72",
-    Didot,
-    Georgia,
-    serif;
+  var(--font-cscardia),
+  serif;
 
   font-size: clamp(
-    4.75rem,
-    min(8.2cqw, 13cqh),
-    8.5rem
+    6.75rem,
+    min(12.2cqw, 15cqh),
+    13.5rem
   );
 
   font-weight: 400;
   line-height: 0.88;
-  letter-spacing: -0.065em;
 }
 
 .heading span {
@@ -205,16 +203,11 @@
 
   .orbWrapper {
     left: clamp(
-      1rem,
-      4cqw,
-      3rem
+      -12rem,
+      -16cqw,
+      -18rem
     );
 
-    width: clamp(
-      13rem,
-      min(30cqw, 45cqh),
-      20rem
-    );
   }
 
   .heading {
@@ -227,9 +220,9 @@
     );
 
     font-size: clamp(
-      4rem,
-      min(8.8cqw, 11cqh),
-      6.5rem
+      6.75rem,
+      min(11.5cqw, 15cqh),
+      12.5rem
     );
   }
 }
@@ -257,12 +250,6 @@
   .orbWrapper {
     top: 12%;
     left: 50%;
-
-    width: clamp(
-      13rem,
-      58cqw,
-      19rem
-    );
 
     transform: translateX(-50%);
   }
@@ -325,15 +312,6 @@
 
 @media (prefers-reduced-motion: reduce) {
   .orb {
-    display: none;
-  }
-
-  .orbWrapper {
-    background-image:
-      url("/images/home/design-statement/particle-orb-poster.webp");
-
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
+    opacity: 0.7;
   }
 }

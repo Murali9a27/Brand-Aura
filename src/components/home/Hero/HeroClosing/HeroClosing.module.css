@@ -87,11 +87,8 @@
   color: #ffffff;
 
   font-family:
-    var(--font-display),
-    "Bodoni 72",
-    Didot,
-    Georgia,
-    serif;
+  var(--font-cscardia),
+  serif;
 
   font-size: clamp(6.75rem, min(8cqw, 12cqh), 13rem);
 

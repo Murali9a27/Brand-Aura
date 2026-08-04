@@ -148,31 +148,43 @@
     + clamp(3rem, 7cqw, 6rem)
   );
 
-  bottom: 1%;
+  bottom: 6%;
 
   transform: rotate(-4deg);
 }
 
+.visionAnnotation img{
+  margin-left: auto;
+} 
+
 .ideasAnnotation {
   left: calc(
     var(--card-2-x)
-    + clamp(2.5rem, 6cqw, 5rem)
+    + clamp(4.5rem, 9cqw, 9rem)
   );
 
-  top: 10%;
+  top: 20%;
 
   transform: rotate(-7deg);
+}
+
+.ideasAnnotation img{
+  margin-left: auto;
 }
 
 .brandAnnotation {
   left: calc(
     var(--card-3-x)
-    + clamp(2.5rem, 6cqw, 5rem)
+    + clamp(4.5rem, 9cqw, 9rem)
   );
 
   bottom: 8%;
 
   transform: rotate(-5deg);
+}
+
+.brandAnnotation img{
+  margin-left: auto;
 }
 
 .recallAnnotation {
@@ -186,9 +198,17 @@
     - clamp(5rem, 10cqw, 10rem)
   );
 
-  top: 16%;
+  top: 22%;
 
   transform: rotate(7deg);
+}
+
+.recallAnnotation img{
+  /*
+   * Positions the annotation closer to the right side
+   * of the fourth card.
+   */
+  margin-left: auto;
 }
 
 /* =========================================================

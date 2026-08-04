@@ -2,36 +2,101 @@ import Image from "next/image";
 
 import styles from "./ClientLogosSection.module.css";
 
-const clients = [
+interface Client {
+  name: string;
+  defaultLogo: string;
+  hoverLogo: string;
+}
+
+const clients: Client[] = [
   {
     name: "British Learning",
-    logo: "/images/clients/british-learning.png",
+    defaultLogo: "/images/clients/british-learning-grey.png",
+    hoverLogo: "/images/clients/british-learning.png",
   },
   {
     name: "Aqura Pride",
-    logo: "/images/clients/aqura-pride.png",
+    defaultLogo: "/images/clients/aqura-pride-grey.png",
+    hoverLogo: "/images/clients/aqura-pride.png",
   },
   {
     name: "SKILS",
-    logo: "/images/clients/skils.png",
+    defaultLogo: "/images/clients/skils-grey.png",
+    hoverLogo: "/images/clients/skils.png",
   },
   {
     name: "SunArth",
-    logo: "/images/clients/sunarth.png",
+    defaultLogo: "/images/clients/sunarth-grey.png",
+    hoverLogo: "/images/clients/sunarth.png",
   },
   {
     name: "Learnovate",
-    logo: "/images/clients/learnovate.svg",
+    defaultLogo: "/images/clients/learnovate-grey.png",
+    hoverLogo: "/images/clients/learnovate.png",
   },
   {
-    name: "Global Valley",
-    logo: "/images/clients/global-valley.png",
+    name: "Phonics Mantra",
+    defaultLogo: "/images/clients/phonics-mantra-grey.png",
+    hoverLogo: "/images/clients/phonics-mantra.png",
   },
   {
-    name: "Sellability",
-    logo: "/images/clients/sellability.png",
+    name: "Isas",
+    defaultLogo: "/images/clients/isas-grey.png",
+    hoverLogo: "/images/clients/isas.png",
+  },
+  {
+    name: "Etisalat And",
+    defaultLogo: "/images/clients/etisalat-and-grey.png",
+    hoverLogo: "/images/clients/etisalat-and.png",
   },
 ];
+
+interface LogoGroupProps {
+  duplicate?: boolean;
+}
+
+function LogoGroup({ duplicate = false }: LogoGroupProps) {
+  return (
+    <div
+      className={styles.logoGroup}
+      aria-hidden={duplicate || undefined}
+    >
+      {clients.map((client) => (
+        <div
+          key={`${duplicate ? "duplicate-" : ""}${client.name}`}
+          className={styles.logoCard}
+          tabIndex={duplicate ? -1 : 0}
+          aria-label={duplicate ? undefined : client.name}
+        >
+          <span className={styles.logoLayer}>
+            <Image
+              src={client.defaultLogo}
+              alt={duplicate ? "" : `${client.name} logo`}
+              fill
+              sizes="(max-width: 767px) 42vw, 15vw"
+              className={`${styles.logoImage} ${styles.defaultLogo}`}
+              draggable={false}
+            />
+          </span>
+
+          <span
+            className={styles.logoLayer}
+            aria-hidden="true"
+          >
+            <Image
+              src={client.hoverLogo}
+              alt=""
+              fill
+              sizes="(max-width: 767px) 42vw, 15vw"
+              className={`${styles.logoImage} ${styles.hoverLogo}`}
+              draggable={false}
+            />
+          </span>
+        </div>
+      ))}
+    </div>
+  );
+}
 
 export default function ClientLogosSection() {
   return (
@@ -39,50 +104,12 @@ export default function ClientLogosSection() {
       className={styles.section}
       aria-label="Brands we have worked with"
     >
-      
-
       <div className={styles.viewport}>
         <div className={styles.track}>
-          {/* Original logo group */}
-          <div className={styles.logoGroup}>
-            {clients.map((client) => (
-              <div
-                key={client.name}
-                className={styles.logoCard}
-              >
-                <Image
-                  src={client.logo}
-                  alt={`${client.name} logo`}
-                  fill
-                  sizes="(max-width: 767px) 42vw, 15vw"
-                  className={styles.logo}
-                  draggable={false}
-                />
-              </div>
-            ))}
-          </div>
+          <LogoGroup />
 
-          {/* Duplicate group creates the seamless loop */}
-          <div
-            className={styles.logoGroup}
-            aria-hidden="true"
-          >
-            {clients.map((client) => (
-              <div
-                key={`duplicate-${client.name}`}
-                className={styles.logoCard}
-              >
-                <Image
-                  src={client.logo}
-                  alt=""
-                  fill
-                  sizes="(max-width: 767px) 42vw, 15vw"
-                  className={styles.logo}
-                  draggable={false}
-                />
-              </div>
-            ))}
-          </div>
+          {/* Duplicate group creates the seamless marquee loop */}
+          <LogoGroup duplicate />
         </div>
       </div>
     </section>

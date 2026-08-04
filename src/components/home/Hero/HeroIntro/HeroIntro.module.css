@@ -124,7 +124,7 @@
 .trustText {
   color: rgba(255, 255, 255, 0.88);
 
-  font-family: var(--font-geist-sans), sans-serif;
+  font-family: var(--font-poppins), sans-serif;
 
   font-size: clamp(
     0.6875rem,
@@ -233,11 +233,8 @@
   color: rgba(255, 255, 255, 0.5);
 
   font-family:
-    var(--font-display),
-    "Bodoni 72",
-    Didot,
-    Georgia,
-    serif;
+  var(--font-cscardia),
+  serif;
 
   font-size: clamp(
     6rem,
@@ -247,7 +244,6 @@
 
   font-weight: 400;
   line-height: 0.91;
-  letter-spacing: -0.067em;
 }
 
 .heading span {
@@ -285,13 +281,13 @@
     14.6875rem
   );
 
-  aspect-ratio: 2.25 / 1;
+  aspect-ratio: 1.93;
 
   padding: 0;
 
   overflow: hidden;
 
-  border: 1px solid rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(225, 225, 225, 0.55);
 
   border-radius: clamp(
     0.875rem,
@@ -307,11 +303,11 @@
   appearance: none;
   -webkit-appearance: none;
 
-  box-shadow:
+  /* box-shadow:
     0
     clamp(1rem, 2.5cqh, 1.25rem)
     clamp(2.5rem, 7cqh, 3.75rem)
-    rgba(0, 0, 0, 0.42);
+    rgba(0, 0, 0, 0.42); */
 
   transform: translateZ(0);
 
@@ -322,16 +318,6 @@
 }
 
 .lifeCard:hover {
-  border-color: rgba(244, 180, 26, 0.9);
-
-  box-shadow:
-    0
-    clamp(1.25rem, 3cqh, 1.5rem)
-    clamp(2.75rem, 8cqh, 4.0625rem)
-    rgba(0, 0, 0, 0.48),
-    0 0 clamp(1.25rem, 3.5cqh, 1.75rem)
-    rgba(244, 180, 26, 0.12);
-
   transform: translateY(-3%);
 }
 
@@ -438,7 +424,7 @@
 
   color: #ffffff;
 
-  font-family: var(--font-geist-sans), sans-serif;
+  font-family: var(--font-poppins), sans-serif;
 
   font-size: clamp(
     0.625rem,
