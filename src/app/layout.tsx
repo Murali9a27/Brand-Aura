@@ -8,6 +8,7 @@ import styles from "./layout.module.css";
 import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header";
 import LeftNavigation from "@/components/layout/LeftNavigation";
+import SvgFilters from "@/components/common/SvgFilters";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -58,6 +59,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className={styles.body}>
+        {/* <SvgFilters /> */}
         <Header />
 
         <LeftNavigation />
