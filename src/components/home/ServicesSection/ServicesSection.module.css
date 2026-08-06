@@ -1,0 +1,743 @@
+/* =========================================================
+   SERVICES SECTION
+   ========================================================= */
+
+.section {
+  position: relative;
+  isolation: isolate;
+
+  container-name: services-section;
+  container-type: inline-size;
+
+  width: 100%;
+  min-height: clamp(46rem, 100svh, 62rem);
+
+  overflow: hidden;
+
+  border-bottom: 1px solid var(--color-border);
+
+  background: #020202;
+  color: #ffffff;
+}
+
+/* =========================================================
+   BACKGROUND
+   ========================================================= */
+
+.backgroundPattern {
+  position: absolute;
+  z-index: 0;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      45deg,
+      transparent 0%,
+      transparent 18%,
+      rgba(255, 255, 255, 0.014) 18%,
+      rgba(255, 255, 255, 0.014) 29%,
+      transparent 29%,
+      transparent 64%,
+      rgba(255, 255, 255, 0.012) 64%,
+      rgba(255, 255, 255, 0.012) 74%,
+      transparent 74%
+    ),
+    linear-gradient(
+      135deg,
+      transparent 0%,
+      transparent 56%,
+      rgba(255, 255, 255, 0.012) 56%,
+      rgba(255, 255, 255, 0.012) 67%,
+      transparent 67%
+    ),
+    radial-gradient(
+      circle at 50% 50%,
+      rgba(255, 255, 255, 0.018),
+      transparent 60%
+    );
+
+  opacity: 0.8;
+
+  pointer-events: none;
+}
+
+/* =========================================================
+   CONTAINER
+   ========================================================= */
+
+.container {
+  position: relative;
+  z-index: 1;
+
+  width: min(100% - 3rem, 92rem);
+  margin-inline: auto;
+
+  padding-block:
+    clamp(3rem, 7svh, 5rem)
+    clamp(3rem, 6svh, 5rem);
+}
+
+/* =========================================================
+   SECTION HEADER
+   ========================================================= */
+
+.header {
+  position: relative;
+  z-index: 4;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin-bottom: clamp(2.5rem, 5svh, 4rem);
+
+  text-align: center;
+}
+
+.eyebrow {
+  margin: 0 0 0.65rem;
+
+  color: rgba(255, 255, 255, 0.76);
+
+  font-family:
+    var(--font-poppins),
+    sans-serif;
+
+  font-size: clamp(0.7rem, 0.8vw, 0.85rem);
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.heading {
+  max-width: 56rem;
+  margin: 0;
+
+  color: rgba(255, 255, 255, 0.95);
+
+  font-family:
+    var(--font-cscardia),
+    serif;
+
+  font-size: clamp(2rem, 3.2vw, 3.4rem);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+}
+
+/* =========================================================
+   SERVICES BOARD
+   ========================================================= */
+
+.servicesBoard {
+  --centre-hub-size: clamp(9rem, 13cqw, 12rem);
+  --board-line-color: rgba(255, 255, 255, 0.1);
+  --board-dot-size: 0.72rem;
+
+  position: relative;
+
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(16rem, 1fr));
+
+  width: 100%;
+  min-height: clamp(35rem, 67svh, 47rem);
+
+  overflow: hidden;
+}
+
+/* =========================================================
+   CROSS LINES
+   ========================================================= */
+
+.horizontalLine,
+.verticalLine {
+  position: absolute;
+  z-index: 1;
+
+  background: var(--board-line-color);
+
+  pointer-events: none;
+}
+
+.horizontalLine {
+  top: 50%;
+  right: 0;
+  left: 0;
+
+  height: .5px;
+}
+
+.verticalLine {
+  top: 0;
+  bottom: 0;
+  left: 50%;
+
+  width: .5px;
+}
+
+.lineDot {
+  position: absolute;
+  z-index: 5;
+
+  width: var(--board-dot-size);
+  aspect-ratio: 1;
+
+  border-radius: 50%;
+
+  background: #303030;
+
+  transform: translate(-50%, -50%);
+
+  pointer-events: none;
+}
+
+.lineDotLeft {
+  top: 50%;
+  left: calc(var(--board-dot-size) / 2);
+}
+
+.lineDotRight {
+  top: 50%;
+  left: calc(100% - (var(--board-dot-size) / 2));
+}
+
+.lineDotTop {
+  top: calc(var(--board-dot-size) / 2);
+  left: 50%;
+}
+
+.lineDotBottom {
+  top: calc(100% - (var(--board-dot-size) / 2));
+  left:  calc(50%);
+}
+
+/* =========================================================
+   SERVICE CARD
+   ========================================================= */
+
+.serviceCard {
+  position: relative;
+  isolation: isolate;
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+
+  min-width: 0;
+  min-height: 16rem;
+
+  overflow: hidden;
+
+  color: #ffffff;
+  text-decoration: none;
+
+  outline: none;
+
+  transition:
+    background-color 500ms ease,
+    box-shadow 500ms ease;
+}
+
+/*
+ * Grid background revealed on hover.
+ */
+
+.serviceCard::before {
+  position: absolute;
+  z-index: -1;
+
+  inset: 0;
+
+  content: "";
+
+  background-image:
+    linear-gradient(
+      rgba(255, 255, 255, 0.02) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.02) 1px,
+      transparent 1px
+    );
+    /* linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.18),
+      transparent 5%
+    ); */
+
+  background-size:
+    2.2rem 2.2rem,
+    2.2rem 2.2rem,
+    100% 100%;
+
+  opacity: 0;
+
+  transform: scale(1.04);
+
+  transition:
+    opacity 500ms ease,
+    transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+
+  pointer-events: none;
+}
+
+/*
+ * Soft dark gradient keeps text readable over the grid.
+ */
+
+/* .serviceCard::after {
+  position: absolute;
+  z-index: -1;
+
+  inset: 0;
+
+  content: "";
+
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(255, 255, 255, 0.025),
+    transparent 68%
+  );
+
+  opacity: 0;
+
+  transition: opacity 500ms ease;
+
+  pointer-events: none;
+} */
+
+.serviceCard[data-side="left"] {
+  justify-content: flex-start;
+
+  padding:
+    clamp(2rem, 4cqw, 4rem)
+    calc(var(--centre-hub-size) / 2 + clamp(2rem, 4cqw, 4rem))
+    clamp(2rem, 4cqw, 4rem)
+    clamp(0.25rem, 1cqw, 1rem);
+
+  text-align: left;
+}
+
+.serviceCard[data-side="right"] {
+  justify-content: flex-end;
+
+  padding:
+    clamp(2rem, 4cqw, 4rem)
+    clamp(0.25rem, 1cqw, 1rem)
+    clamp(2rem, 4cqw, 4rem)
+    calc(var(--centre-hub-size) / 2 + clamp(2rem, 4cqw, 4rem));
+
+  text-align: right;
+}
+
+/* =========================================================
+   SERVICE CONTENT
+   ========================================================= */
+
+.serviceContent {
+  position: relative;
+  z-index: 3;
+
+  display: flex;
+  flex-direction: column;
+
+  width: min(100%, 28rem);
+
+  transform: translate3d(0, 0.8rem, 0);
+
+  transition:
+    transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.serviceCard[data-side="left"] .serviceContent {
+  align-items: flex-start;
+}
+
+.serviceCard[data-side="right"] .serviceContent {
+  align-items: flex-end;
+}
+
+/* =========================================================
+   SERVICE ICON
+   ========================================================= */
+
+.iconWrapper {
+  position: relative;
+
+  display: grid;
+  place-items: center;
+
+  width: clamp(2.8rem, 4cqw, 3.6rem);
+  aspect-ratio: 1;
+
+  margin-bottom: clamp(1rem, 2svh, 1.5rem);
+
+  opacity: 0;
+
+  transform: translate3d(0, 1.1rem, 0) scale(0.88);
+
+  transition:
+    opacity 400ms ease,
+    transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.serviceIcon {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+
+  user-select: none;
+
+  -webkit-user-drag: none;
+}
+
+/* =========================================================
+   SERVICE COPY
+   ========================================================= */
+
+.serviceCategory {
+  display: block;
+
+  margin-bottom: clamp(0.85rem, 1.5svh, 1.2rem);
+
+  color: rgba(255, 255, 255, 0.82);
+
+  font-family:
+    var(--font-poppins),
+    sans-serif;
+
+  font-size: clamp(0.8rem, 1vw, 1rem);
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+.serviceTitle {
+  display: block;
+
+  color: rgba(255, 255, 255, 0.96);
+
+  font-family:
+    var(--font-cscardia),
+    serif;
+
+  font-size: clamp(1.65rem, 2.5cqw, 2.75rem);
+  font-weight: 400;
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+}
+
+/* =========================================================
+   SERVICE NUMBER
+   ========================================================= */
+
+.serviceNumber {
+  position: absolute;
+  z-index: 1;
+
+  top: 50%;
+
+  color: rgba(255, 255, 255, 0.035);
+
+  font-family:
+    var(--font-cscardia),
+    serif;
+
+  font-size: clamp(5.5rem, 10cqw, 10rem);
+  font-weight: 400;
+  line-height: 0.8;
+  letter-spacing: -0.06em;
+
+  transform: translateY(-50%);
+
+  transition:
+    color 500ms ease,
+    transform 650ms cubic-bezier(0.22, 1, 0.36, 1);
+
+  pointer-events: none;
+}
+
+.serviceCard[data-side="left"] .serviceNumber {
+  right: calc(var(--centre-hub-size) / 2 + 1rem);
+}
+
+.serviceCard[data-side="right"] .serviceNumber {
+  left: calc(var(--centre-hub-size) / 2 + 1rem);
+}
+
+/* =========================================================
+   CENTRE HUB
+   ========================================================= */
+
+.centreHub {
+  position: absolute;
+  z-index: 6;
+
+  top: 50%;
+  left: 50%;
+
+  display: grid;
+  place-items: center;
+
+  width: var(--centre-hub-size);
+  aspect-ratio: 1;
+
+  padding: clamp(0.5rem, 1cqw, 0.8rem);
+
+  border: 1px dashed rgba(255, 255, 255, 0.16);
+  border-radius: 50%;
+
+  background: rgba(2, 2, 2, 0.94);
+
+  box-shadow:
+    0 0 0 1rem rgba(2, 2, 2, 0.8),
+    0 0 4rem rgba(0, 0, 0, 0.65);
+
+  transform: translate(-50%, -50%);
+}
+
+.centreHubInner {
+  display: grid;
+  place-items: center;
+
+  width: 100%;
+  height: 100%;
+
+  border-radius: 50%;
+
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.025),
+    transparent 66%
+  );
+}
+
+.centreLogo {
+  width: clamp(3.5rem, 6cqw, 5.5rem);
+  height: auto;
+
+  object-fit: contain;
+}
+
+/* =========================================================
+   HOVER AND FOCUS
+   ========================================================= */
+
+.serviceCard:hover,
+.serviceCard:focus-visible {
+  background-color: rgba(255, 255, 255, 0.012);
+
+  box-shadow:
+    inset 0 0 3rem rgba(255, 255, 255, 0.012),
+    0 0 3rem rgba(0, 0, 0, 0.2);
+}
+
+.serviceCard:hover::before,
+.serviceCard:focus-visible::before {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.serviceCard:hover::after,
+.serviceCard:focus-visible::after {
+  opacity: 1;
+}
+
+/* All content moves upward */
+
+.serviceCard:hover .serviceContent,
+.serviceCard:focus-visible .serviceContent {
+  transform: translate3d(0, -0.75rem, 0);
+}
+
+/* Icon becomes visible */
+
+.serviceCard:hover .iconWrapper,
+.serviceCard:focus-visible .iconWrapper {
+  opacity: 1;
+
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+/* Number becomes slightly clearer */
+
+.serviceCard:hover .serviceNumber,
+.serviceCard:focus-visible .serviceNumber {
+  color: rgba(255, 255, 255, 0.07);
+
+  transform:
+    translateY(-54%)
+    scale(1.02);
+}
+
+.serviceCard:focus-visible {
+  outline: 1px solid rgba(255, 255, 255, 0.55);
+  outline-offset: -1px;
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@container services-section (max-width: 64rem) {
+  .section {
+    min-height: auto;
+  }
+
+  .container {
+    width: min(100% - 2rem, 92rem);
+  }
+
+  .servicesBoard {
+    --centre-hub-size: clamp(7.5rem, 15cqw, 9.5rem);
+    grid-template-rows: repeat(2, minmax(15rem, 1fr));
+    min-height: 34rem;
+  }
+
+  .serviceCard[data-side="left"] {
+    padding-right: calc(
+      var(--centre-hub-size) / 2 + 2rem
+    );
+  }
+
+  .serviceCard[data-side="right"] {
+    padding-left: calc(
+      var(--centre-hub-size) / 2 + 2rem
+    );
+  }
+
+  .serviceTitle {
+    font-size: clamp(1.5rem, 3cqw, 2.2rem);
+  }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@container services-section (max-width: 47.9375rem) {
+  .container {
+    width: min(100% - 1.25rem, 92rem);
+    padding-block: 3.5rem;
+  }
+
+  .header {
+    margin-bottom: 2.5rem;
+  }
+
+  .heading {
+    max-width: 34rem;
+
+    font-size: clamp(2rem, 8cqw, 2.8rem);
+  }
+
+  .servicesBoard {
+    display: flex;
+    flex-direction: column;
+
+    min-height: 0;
+
+    overflow: visible;
+  }
+
+  .horizontalLine,
+  .verticalLine,
+  .lineDot,
+  .centreHub {
+    display: none;
+  }
+
+  .serviceCard {
+    min-height: 18rem;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .serviceCard:first-of-type {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .serviceCard[data-side="left"],
+  .serviceCard[data-side="right"] {
+    justify-content: flex-start;
+
+    padding: clamp(2rem, 8cqw, 3rem);
+
+    text-align: left;
+  }
+
+  .serviceCard[data-side="left"] .serviceContent,
+  .serviceCard[data-side="right"] .serviceContent {
+    align-items: flex-start;
+  }
+
+  .serviceNumber,
+  .serviceCard[data-side="left"] .serviceNumber,
+  .serviceCard[data-side="right"] .serviceNumber {
+    top: 50%;
+    right: clamp(1rem, 6cqw, 2.5rem);
+    left: auto;
+
+    font-size: clamp(5rem, 22cqw, 7rem);
+  }
+
+  .serviceTitle {
+    max-width: 24rem;
+
+    font-size: clamp(1.75rem, 7cqw, 2.5rem);
+  }
+}
+
+/* =========================================================
+   TOUCH DEVICES
+   ========================================================= */
+
+@media (hover: none) {
+  .serviceCard::before {
+    opacity: 0.45;
+
+    transform: scale(1);
+  }
+
+  .serviceContent {
+    transform: none;
+  }
+
+  .iconWrapper {
+    opacity: 1;
+
+    transform: none;
+  }
+
+  .serviceNumber {
+    color: rgba(255, 255, 255, 0.055);
+  }
+
+  .serviceCard:active .serviceContent {
+    transform: translate3d(0, -0.35rem, 0);
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .serviceCard,
+  .serviceCard::before,
+  .serviceCard::after,
+  .serviceContent,
+  .iconWrapper,
+  .serviceNumber {
+    transition: none;
+  }
+
+  .serviceCard:hover .serviceContent,
+  .serviceCard:focus-visible .serviceContent {
+    transform: none;
+  }
+}
