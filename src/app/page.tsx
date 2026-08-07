@@ -1,9 +1,11 @@
 import ClientLogosSection from "@/components/home/ClientLogosSection/ClientLogosSection";
 import DesignStatementSection from "@/components/home/DesignStatementSection/DesignStatementSection";
+import FounderSection from "@/components/home/FounderSection/FounderSection";
 import Hero from "@/components/home/Hero/Hero";
 import PortfolioSection from "@/components/home/PortfolioSection/PortfolioSection";
 import SayHelloSection from "@/components/home/SayHelloSection/SayHelloSection";
 import ServicesSection from "@/components/home/ServicesSection/ServicesSection";
+import TicTacToeSection from "@/components/home/TicTacToeSection/TicTacToeSection";
 
 export default function Home() {
   return (
@@ -14,7 +16,8 @@ export default function Home() {
     <PortfolioSection />
     <SayHelloSection />
     <ServicesSection />
-    
+    <FounderSection />
+    <TicTacToeSection />
     </>
   );
 }

@@ -138,13 +138,32 @@ export default function ServicesSection() {
           <div className={styles.centreHub} aria-hidden="true">
             <span className={styles.centreHubInner}>
               <Image
-                src="/images/logo/brand-aura-mark.svg"
+                src="/logos/brand-aura-logo.png"
                 alt=""
-                width={82}
-                height={82}
+                width={100}
+                height={100}
                 className={styles.centreLogo}
               />
             </span>
+            <span
+            className={`${styles.lineDot} ${styles.lineDotLeftLogo}`}
+            aria-hidden="true"
+          />
+
+          <span
+            className={`${styles.lineDot} ${styles.lineDotRightLogo}`}
+            aria-hidden="true"
+          />
+
+          <span
+            className={`${styles.lineDot} ${styles.lineDotTopLogo}`}
+            aria-hidden="true"
+          />
+
+          <span
+            className={`${styles.lineDot} ${styles.lineDotBottomLogo}`}
+            aria-hidden="true"
+          />
           </div>
         </div>
       </div>

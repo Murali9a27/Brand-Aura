@@ -1,0 +1,984 @@
+/* =========================================================
+   TIC TAC TOE SECTION
+   ========================================================= */
+
+.section {
+  position: relative;
+  isolation: isolate;
+
+  container-name: tic-game;
+  container-type: inline-size;
+
+  width: 100%;
+  min-height: clamp(42rem, 80svh, 48rem);
+
+  overflow: hidden;
+
+  background: #020202;
+  color: #ffffff;
+
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* =========================================================
+   BACKGROUND
+   ========================================================= */
+
+.backgroundPattern {
+  position: absolute;
+  z-index: 0;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      135deg,
+      transparent 0%,
+      transparent 57%,
+      rgba(255, 255, 255, 0.012) 57%,
+      rgba(255, 255, 255, 0.012) 66%,
+      transparent 66%
+    ),
+    linear-gradient(
+      45deg,
+      transparent 0%,
+      transparent 20%,
+      rgba(255, 255, 255, 0.01) 20%,
+      rgba(255, 255, 255, 0.01) 29%,
+      transparent 29%
+    );
+
+  pointer-events: none;
+}
+
+.blueGlow,
+.goldGlow {
+  position: absolute;
+  z-index: 0;
+
+  width: clamp(20rem, 32vw, 36rem);
+  aspect-ratio: 1;
+
+  border-radius: 50%;
+
+  filter: blur(7rem);
+
+  pointer-events: none;
+}
+
+.blueGlow {
+  left: 6%;
+  bottom: -24%;
+
+  background: rgba(23, 116, 198, 0.24);
+}
+
+.goldGlow {
+  left: 40%;
+  bottom: -34%;
+
+  background: rgba(208, 157, 34, 0.18);
+}
+
+/* =========================================================
+   PARTICLE-STYLE ORB
+   ========================================================= */
+
+.orb {
+  position: absolute;
+  z-index: 1;
+
+  right: clamp(-6rem, -4vw, -2rem);
+  bottom: clamp(2rem, 7svh, 5rem);
+
+  width: clamp(12rem, 20vw, 20rem);
+  aspect-ratio: 1;
+
+  border-radius: 50%;
+
+  background:
+    repeating-radial-gradient(
+      circle at 37% 35%,
+      rgba(79, 139, 231, 0.8) 0 1px,
+      transparent 1px 5px
+    );
+
+  mask-image: radial-gradient(
+    circle,
+    #000 20%,
+    rgba(0, 0, 0, 0.8) 52%,
+    transparent 74%
+  );
+
+  opacity: 0.7;
+
+  transform: rotate(-18deg);
+
+  pointer-events: none;
+}
+
+.orbInner {
+  position: absolute;
+
+  inset: 15%;
+
+  border-radius: inherit;
+
+  background: radial-gradient(
+    circle at 65% 35%,
+    rgba(255, 255, 255, 0.12),
+    rgba(48, 91, 190, 0.08) 42%,
+    transparent 70%
+  );
+}
+
+/* =========================================================
+   CONTAINER
+   ========================================================= */
+
+.container {
+  position: relative;
+  z-index: 2;
+
+  width: min(100% - 3rem, 72rem);
+  margin-inline: auto;
+
+  padding:
+    clamp(3rem, 6svh, 5rem)
+    0
+    clamp(5rem, 8svh, 7rem);
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.header {
+  margin-bottom: clamp(2rem, 4svh, 3rem);
+
+  text-align: center;
+}
+
+.heading {
+  margin: 0;
+
+  color: rgba(255, 255, 255, 0.96);
+
+  font-family:
+    var(--font-display),
+    "Bodoni 72",
+    Didot,
+    Georgia,
+    serif;
+
+  font-size: clamp(2rem, 3cqw, 3.2rem);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.035em;
+}
+
+.gameHint {
+  min-height: 1.2em;
+
+  margin: 0.75rem 0 0;
+
+  color: rgba(255, 255, 255, 0.42);
+
+  font-family:
+    var(--font-geist-sans),
+    sans-serif;
+
+  font-size: 0.8rem;
+}
+
+/* =========================================================
+   GAME BOARD
+   ========================================================= */
+
+.gameBoard {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: clamp(1rem, 1.8cqw, 1.6rem);
+
+  width: min(100%, 62rem);
+  margin-inline: auto;
+}
+
+/* =========================================================
+   GAME CELL
+   ========================================================= */
+
+.gameCell {
+  position: relative;
+  isolation: isolate;
+
+  display: grid;
+  place-items: center;
+
+  width: 100%;
+  aspect-ratio: 1.62 / 1;
+
+  overflow: hidden;
+
+  padding: 0;
+
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: clamp(0.75rem, 1.2cqw, 1rem);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.045),
+      rgba(255, 255, 255, 0.015)
+    ),
+    #151515;
+
+  color: #ffffff;
+
+  cursor: pointer;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.025),
+    0 1.5rem 4rem rgba(0, 0, 0, 0.14);
+
+  transition:
+    border-color 350ms ease,
+    background-color 350ms ease,
+    transform 400ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 400ms ease;
+}
+
+.gameCell::before {
+  position: absolute;
+  z-index: -1;
+
+  inset: 0;
+
+  content: "";
+
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(255, 255, 255, 0.05),
+    transparent 65%
+  );
+
+  opacity: 0;
+
+  transition: opacity 350ms ease;
+
+  pointer-events: none;
+}
+
+.gameCell:not(:disabled):hover {
+  border-color: rgba(255, 255, 255, 0.32);
+
+  transform: translateY(-0.3rem);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 1.8rem 4.5rem rgba(0, 0, 0, 0.3);
+}
+
+.gameCell:not(:disabled):hover::before {
+  opacity: 1;
+}
+
+.gameCell:disabled {
+  cursor: default;
+}
+
+.gameCell[data-winning="true"] {
+  border-color: rgba(244, 174, 26, 0.65);
+
+  box-shadow:
+    inset 0 0 2rem rgba(244, 174, 26, 0.06),
+    0 0 2rem rgba(244, 174, 26, 0.08);
+}
+
+/* =========================================================
+   X
+   ========================================================= */
+
+.xMark {
+  position: relative;
+
+  display: block;
+
+  width: clamp(3.5rem, 7cqw, 5.5rem);
+  aspect-ratio: 1;
+
+  animation: markEnter 450ms
+    cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.xMark span {
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+
+  width: 110%;
+  height: clamp(0.3rem, 0.5cqw, 0.5rem);
+
+  border-radius: 999px;
+
+  background: #f5a914;
+
+  transform-origin: center;
+}
+
+.xMark span:first-child {
+  transform:
+    translate(-50%, -50%)
+    rotate(42deg);
+}
+
+.xMark span:last-child {
+  transform:
+    translate(-50%, -50%)
+    rotate(-50deg);
+}
+
+/* =========================================================
+   O
+   ========================================================= */
+
+.oMark {
+  display: block;
+
+  width: clamp(3.2rem, 6cqw, 5rem);
+  aspect-ratio: 1;
+
+  border: clamp(
+      0.35rem,
+      0.6cqw,
+      0.55rem
+    )
+    solid #397bc6;
+
+  border-radius: 50%;
+
+  animation: markEnter 450ms
+    cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes markEnter {
+  from {
+    opacity: 0;
+
+    transform: scale(0.6) rotate(-8deg);
+  }
+
+  to {
+    opacity: 1;
+
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+/* =========================================================
+   RESULT MODAL
+   ========================================================= */
+
+.resultOverlay {
+  position: absolute;
+  z-index: 20;
+
+  inset: 0;
+
+  display: grid;
+  place-items: center;
+
+  padding: clamp(1rem, 3cqw, 2rem);
+
+  background: rgba(0, 0, 0, 0.58);
+
+  backdrop-filter: blur(0.6rem);
+  -webkit-backdrop-filter: blur(0.6rem);
+
+  animation: overlayEnter 350ms ease;
+}
+
+/* =========================================================
+   RESULT CARD
+   ========================================================= */
+
+.resultCard {
+  position: relative;
+  isolation: isolate;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  width: min(100%, 68rem);
+  min-height: clamp(24rem, 52svh, 31rem);
+
+  overflow: hidden;
+
+  padding:
+    clamp(3rem, 8cqw, 6rem)
+    clamp(1.25rem, 5cqw, 4rem);
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: clamp(1rem, 2cqw, 1.5rem);
+
+  background:
+    radial-gradient(
+      circle at 50% 48%,
+      rgba(255, 255, 255, 0.045),
+      transparent 57%
+    ),
+    #151515;
+
+  text-align: center;
+
+  box-shadow:
+    0 3rem 8rem rgba(0, 0, 0, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.035);
+
+  animation: modalEnter 600ms
+    cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* =========================================================
+   EQUATION
+   ========================================================= */
+
+.equation {
+  position: relative;
+  z-index: 3;
+
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+
+  gap: clamp(0.4rem, 1cqw, 0.9rem);
+
+  color: rgba(255, 255, 255, 0.92);
+
+  font-family:
+    var(--font-display),
+    "Bodoni 72",
+    Didot,
+    Georgia,
+    serif;
+
+  font-size: clamp(2.2rem, 5cqw, 4.8rem);
+  font-weight: 400;
+  line-height: 1;
+}
+
+.equationX {
+  position: relative;
+}
+
+.equationX::after {
+  position: absolute;
+
+  right: -0.25rem;
+  bottom: -0.2rem;
+
+  width: 0.3rem;
+  aspect-ratio: 1;
+
+  content: "";
+
+  border-radius: 50%;
+
+  background: #f5aa18;
+}
+
+.equationO {
+  position: relative;
+}
+
+.equationO::after {
+  position: absolute;
+
+  right: -0.2rem;
+  bottom: -0.15rem;
+
+  width: 0.32rem;
+  aspect-ratio: 1;
+
+  content: "";
+
+  border-radius: 50%;
+
+  background: #397bc6;
+}
+
+.equals {
+  color: rgba(255, 255, 255, 0.4);
+
+  font-family: var(--font-geist-sans), sans-serif;
+
+  font-size: 0.55em;
+  font-weight: 300;
+}
+
+.dot {
+  color: #f5aa18;
+}
+
+/* =========================================================
+   RESULT COPY
+   ========================================================= */
+
+.resultCopy {
+  position: relative;
+  z-index: 3;
+
+  margin-top: clamp(1rem, 2svh, 1.5rem);
+}
+
+.resultCopy h3 {
+  margin: 0;
+
+  color: #ffffff;
+
+  font-family:
+    var(--font-geist-sans),
+    sans-serif;
+
+  font-size: clamp(1.35rem, 2.6cqw, 2.3rem);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.resultCopy p {
+  margin: 0.25rem 0 0;
+
+  color: rgba(255, 255, 255, 0.82);
+
+  font-family:
+    var(--font-geist-sans),
+    sans-serif;
+
+  font-size: clamp(1.1rem, 2cqw, 1.8rem);
+  font-weight: 300;
+  line-height: 1.4;
+}
+
+/* =========================================================
+   ACTIONS
+   ========================================================= */
+
+.resultActions {
+  position: relative;
+  z-index: 3;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin-top: clamp(2rem, 5svh, 3.5rem);
+}
+
+.connectButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 12rem;
+  min-height: 3.4rem;
+
+  padding: 0.8rem 1.5rem;
+
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0.3rem;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.08),
+      transparent
+    ),
+    #050505;
+
+  color: #ffffff;
+
+  font-family:
+    var(--font-geist-sans),
+    sans-serif;
+
+  font-size: 0.85rem;
+  font-weight: 500;
+
+  text-decoration: none;
+  text-transform: uppercase;
+
+  transition:
+    transform 300ms ease,
+    border-color 300ms ease,
+    background-color 300ms ease;
+}
+
+.connectButton:hover {
+  border-color: rgba(255, 255, 255, 0.55);
+
+  transform: translateY(-0.2rem);
+}
+
+.playAgainButton {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 0.45rem;
+
+  margin-top: 1.3rem;
+  padding: 0;
+
+  border: 0;
+
+  background: transparent;
+
+  color: rgba(255, 255, 255, 0.78);
+
+  font-family:
+    var(--font-geist-sans),
+    sans-serif;
+
+  font-size: 0.68rem;
+  font-weight: 500;
+
+  text-transform: uppercase;
+
+  cursor: pointer;
+
+  transition: color 300ms ease;
+}
+
+.playAgainButton:hover {
+  color: #ffffff;
+}
+
+.restartIcon {
+  display: grid;
+  place-items: center;
+
+  width: 1.6rem;
+  aspect-ratio: 1;
+
+  border-radius: 50%;
+
+  background: #f5aa18;
+
+  color: #080808;
+
+  font-size: 1rem;
+  line-height: 1;
+}
+
+/* =========================================================
+   CONFETTI
+   ========================================================= */
+
+.resultDecorations {
+  position: absolute;
+  z-index: 1;
+
+  inset: 20% 14%;
+
+  pointer-events: none;
+}
+
+.confetti {
+  position: absolute;
+
+  width: 0.22rem;
+  height: 0.75rem;
+
+  border-radius: 999px;
+
+  background: #f5aa18;
+
+  transform: rotate(30deg);
+}
+
+.confetti:nth-child(3n) {
+  background: #397bc6;
+}
+
+.confetti:nth-child(4n) {
+  background: #55c9c4;
+}
+
+.confetti:nth-child(5n) {
+  background: #b763c7;
+}
+
+.confetti:nth-child(1) {
+  top: 8%;
+  left: 7%;
+}
+
+.confetti:nth-child(2) {
+  top: 18%;
+  left: 16%;
+}
+
+.confetti:nth-child(3) {
+  top: 52%;
+  left: 4%;
+}
+
+.confetti:nth-child(4) {
+  top: 75%;
+  left: 13%;
+}
+
+.confetti:nth-child(5) {
+  top: 34%;
+  left: 25%;
+}
+
+.confetti:nth-child(6) {
+  top: 4%;
+  left: 31%;
+}
+
+.confetti:nth-child(7) {
+  top: 85%;
+  left: 31%;
+}
+
+.confetti:nth-child(8) {
+  top: 64%;
+  left: 38%;
+}
+
+.confetti:nth-child(9) {
+  top: 18%;
+  left: 43%;
+}
+
+.confetti:nth-child(10) {
+  top: 77%;
+  left: 48%;
+}
+
+.confetti:nth-child(11) {
+  top: 7%;
+  left: 54%;
+}
+
+.confetti:nth-child(12) {
+  top: 89%;
+  left: 57%;
+}
+
+.confetti:nth-child(13) {
+  top: 31%;
+  left: 65%;
+}
+
+.confetti:nth-child(14) {
+  top: 64%;
+  left: 68%;
+}
+
+.confetti:nth-child(15) {
+  top: 13%;
+  left: 75%;
+}
+
+.confetti:nth-child(16) {
+  top: 79%;
+  left: 79%;
+}
+
+.confetti:nth-child(17) {
+  top: 45%;
+  left: 86%;
+}
+
+.confetti:nth-child(18) {
+  top: 8%;
+  left: 94%;
+}
+
+.confetti:nth-child(19) {
+  top: 72%;
+  left: 95%;
+}
+
+.confetti:nth-child(20) {
+  top: 51%;
+  left: 18%;
+}
+
+.confetti:nth-child(21) {
+  top: 92%;
+  left: 21%;
+}
+
+.confetti:nth-child(22) {
+  top: 24%;
+  left: 36%;
+}
+
+.confetti:nth-child(23) {
+  top: 95%;
+  left: 42%;
+}
+
+.confetti:nth-child(24) {
+  top: 42%;
+  left: 58%;
+}
+
+.confetti:nth-child(25) {
+  top: 15%;
+  left: 62%;
+}
+
+.confetti:nth-child(26) {
+  top: 90%;
+  left: 70%;
+}
+
+.confetti:nth-child(27) {
+  top: 23%;
+  left: 88%;
+}
+
+.confetti:nth-child(28) {
+  top: 84%;
+  left: 90%;
+}
+
+/* =========================================================
+   MODAL ANIMATION
+   ========================================================= */
+
+@keyframes overlayEnter {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalEnter {
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(2rem)
+      scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+  }
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@container tic-game (max-width: 64rem) {
+  .container {
+    width: min(100% - 2rem, 62rem);
+  }
+
+  .gameBoard {
+    gap: 1rem;
+  }
+
+  .gameCell {
+    aspect-ratio: 1.45 / 1;
+  }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@container tic-game (max-width: 47.9375rem) {
+  .section {
+    min-height: auto;
+  }
+
+  .container {
+    width: min(100% - 1.25rem, 38rem);
+
+    padding-block: 3.5rem 5rem;
+  }
+
+  .heading {
+    font-size: clamp(2rem, 8cqw, 2.8rem);
+  }
+
+  .gameBoard {
+    gap: clamp(0.55rem, 2cqw, 0.8rem);
+  }
+
+  .gameCell {
+    aspect-ratio: 1 / 1;
+
+    border-radius: 0.65rem;
+  }
+
+  .xMark {
+    width: clamp(2rem, 12cqw, 3.5rem);
+  }
+
+  .oMark {
+    width: clamp(2rem, 11cqw, 3.3rem);
+  }
+
+  .orb {
+    right: -5rem;
+    bottom: 0;
+
+    width: 13rem;
+  }
+
+  .resultCard {
+    min-height: 25rem;
+
+    padding-inline: 1.2rem;
+  }
+
+  .equation {
+    font-size: clamp(2rem, 9cqw, 3rem);
+  }
+
+  .resultCopy h3 {
+    font-size: clamp(1.2rem, 5cqw, 1.7rem);
+  }
+
+  .resultCopy p {
+    font-size: clamp(1rem, 4.5cqw, 1.4rem);
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .gameCell,
+  .gameCell::before,
+  .xMark,
+  .oMark,
+  .resultOverlay,
+  .resultCard,
+  .connectButton {
+    animation: none;
+    transition: none;
+  }
+}

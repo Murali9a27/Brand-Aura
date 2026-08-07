@@ -25,7 +25,7 @@
     clamp(4rem, 9svh, 7rem)
     clamp(2rem, 6cqw, 7rem);
 
-  border-bottom: 1px solid var(--color-border);
+  /* border-bottom: 1px solid var(--color-border); */
 
   background:
     radial-gradient(

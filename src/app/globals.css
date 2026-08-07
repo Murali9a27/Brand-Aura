@@ -4,6 +4,8 @@
   --header-height: 64px;
   --left-nav-width: 100px;
 
+  --footer-height: clamp(18rem, 100svh, 44rem);
+
   --color-background: #050505;
   --color-text: #ffffff;
   --color-border: rgb(255 255 255 / 15%);

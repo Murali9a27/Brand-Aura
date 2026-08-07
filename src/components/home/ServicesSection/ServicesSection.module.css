@@ -14,7 +14,7 @@
 
   overflow: hidden;
 
-  border-bottom: 1px solid var(--color-border);
+  /* border-bottom: 1px solid var(--color-border); */
 
   background: #020202;
   color: #ffffff;
@@ -104,7 +104,7 @@
     var(--font-poppins),
     sans-serif;
 
-  font-size: clamp(0.7rem, 0.8vw, 0.85rem);
+  font-size: clamp(.75rem, min(1cqw, 1.7cqh), .95rem);
   font-weight: 400;
   line-height: 1.2;
 }
@@ -212,6 +212,29 @@
   left:  calc(50%);
 }
 
+/* =========================================================
+   DOT OUTSIDE LOGO
+   ========================================================= */
+
+.lineDotLeftLogo {
+  top: 50%;
+  left: -0.72rem;
+}
+
+.lineDotRightLogo {
+  top: 50%;
+  left: calc(100% + 0.72rem);
+}
+
+.lineDotTopLogo {
+  top: -0.72rem;
+  left: 50%;
+}
+
+.lineDotBottomLogo {
+  top: calc(100% + 0.72rem);
+  left:  calc(50%);
+}
 /* =========================================================
    SERVICE CARD
    ========================================================= */
@@ -411,7 +434,7 @@
     var(--font-poppins),
     sans-serif;
 
-  font-size: clamp(0.8rem, 1vw, 1rem);
+  font-size: clamp(0.9rem, 1.05cqw, 1rem);
   font-weight: 400;
   line-height: 1.3;
 }
@@ -517,9 +540,8 @@
 }
 
 .centreLogo {
-  width: clamp(3.5rem, 6cqw, 5.5rem);
+  width: clamp(3.5rem, 8cqw, 7.5rem);
   height: auto;
-
   object-fit: contain;
 }
 

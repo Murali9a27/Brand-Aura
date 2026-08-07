@@ -7,7 +7,7 @@
 .siteContent {
   display: flex;
   flex-direction: column;
-
+  
   width: calc(100% - var(--left-nav-width));
   min-height: 100svh;
 
@@ -17,9 +17,13 @@
 
 .siteMain {
   flex: 1;
-
+  
   width: 100%;
   min-width: 0;
+
+  position: relative;
+  z-index: 2;
+  margin-bottom: var(--footer-height);
 }
 
 @media (max-width: 767px) {

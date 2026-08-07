@@ -1,0 +1,287 @@
+.section {
+  position: relative;
+  isolation: isolate;
+
+  container-name: founder-section;
+  container-type: inline-size;
+
+  width: 100%;
+  padding: clamp(2.5rem, 6svh, 5rem) 0;
+
+  /* border-bottom: 1px solid var(--color-border); */
+
+  background: #020202;
+  color: #ffffff;
+}
+
+.backgroundPattern {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+
+  background:
+    linear-gradient(
+      135deg,
+      transparent 0%,
+      transparent 58%,
+      rgba(255, 255, 255, 0.012) 58%,
+      rgba(255, 255, 255, 0.012) 66%,
+      transparent 66%
+    ),
+    linear-gradient(
+      45deg,
+      transparent 0%,
+      transparent 18%,
+      rgba(255, 255, 255, 0.01) 18%,
+      rgba(255, 255, 255, 0.01) 27%,
+      transparent 27%
+    );
+
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+
+  width: min(100% - 3rem, 92rem);
+  margin-inline: auto;
+}
+
+.card {
+  position: relative;
+
+  display: grid;
+  grid-template-columns: minmax(16rem, 18.5rem) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(1.5rem, 3cqw, 3rem);
+
+  padding: clamp(0.9rem, 1.5cqw, 1rem);
+
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 1.5rem;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.03),
+      rgba(255, 255, 255, 0.01)
+    ),
+    rgba(5, 5, 5, 0.88);
+
+  overflow: hidden;
+}
+
+.imageWrapper {
+  position: relative;
+
+  width: 100%;
+  aspect-ratio: 1 / 1;
+
+  overflow: hidden;
+  border-radius: 1.15rem;
+
+  background: #111111;
+}
+
+.image {
+  object-fit: cover;
+  object-position: center;
+
+  filter: grayscale(1);
+  transform: scale(1);
+
+  transition:
+    filter 500ms ease,
+    transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.card:hover .image,
+.card:focus-within .image {
+  filter: grayscale(0);
+  transform: scale(1.1);
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+
+  padding:
+    clamp(0.25rem, 0.6cqw, 0.5rem)
+    clamp(0.2rem, 0.4cqw, 0.5rem)
+    clamp(3rem, 7svh, 5rem)
+    0;
+}
+
+.intro {
+  margin: 0 0 1rem;
+
+  color: #ffffff;
+
+  font-family: var(--font-poppins), sans-serif;
+  font-size: clamp(1rem, 1.15cqw, 1.25rem);
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.45;
+}
+
+.body {
+  max-width: 58rem;
+  margin: 0 0 1.5rem;
+
+  color: rgba(255, 255, 255, 0.8);
+
+  font-family: var(--font-poppins), sans-serif;
+  font-size: clamp(0.9rem, 1.05cqw, 1rem);
+  font-weight: 400;
+  line-height: 1.65;
+}
+
+.quote {
+  max-width: 48rem;
+  margin: 0 0 1.6rem;
+
+  color: #f4b41a;
+
+  font-family:
+    "Brush Script MT",
+    "Segoe Script",
+    cursive;
+
+  font-size: clamp(1.3rem, 1.8cqw, 2rem);
+  font-weight: 400;
+  line-height: 1.35;
+}
+
+.author {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.name {
+  margin: 0;
+
+  color: #ffffff;
+
+  font-family:
+    var(--font-cscardia),
+    serif;
+
+  font-size: clamp(1.8rem, 2.2cqw, 2.4rem);
+  font-weight: 400;
+  line-height: 1;
+}
+
+.designation {
+  margin: 0;
+
+  color: rgba(255, 255, 255, 0.72);
+
+  font-family: var(--font-poppins), sans-serif;
+  font-size: clamp(0.88rem, 0.95cqw, 0.95rem);
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.quoteMarks {
+  position: absolute;
+  z-index: 1;
+
+  right: clamp(1rem, 2cqw, 2rem);
+  bottom: clamp(1rem, 2cqw, 1.8rem);
+
+  width: clamp(5rem, 9cqw, 9rem);
+
+  pointer-events: none;
+}
+
+.quoteMarkImage {
+  display: block;
+
+  width: 100%;
+  height: auto;
+
+  object-fit: contain;
+
+  user-select: none;
+
+  -webkit-user-drag: none;
+}
+
+@container founder-section (max-width: 64rem) {
+  .container {
+    width: min(100% - 2rem, 92rem);
+  }
+
+  .card {
+    grid-template-columns: minmax(14rem, 16rem) minmax(0, 1fr);
+    gap: 1.4rem;
+  }
+
+  .content {
+    padding-bottom: 4rem;
+  }
+
+  .quoteMark {
+    font-size: clamp(3rem, 8cqw, 4.8rem);
+  }
+}
+
+@container founder-section (max-width: 47.9375rem) {
+  .container {
+    width: min(100% - 1rem, 92rem);
+  }
+
+  .card {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+
+    padding: 0.8rem;
+    border-radius: 1.1rem;
+  }
+
+  .imageWrapper {
+    aspect-ratio: 4 / 3;
+    border-radius: 0.95rem;
+  }
+
+  .content {
+    padding:
+      0.2rem
+      0.2rem
+      3.5rem;
+  }
+
+  .intro {
+    font-size: 0.98rem;
+  }
+
+  .body {
+    font-size: 0.93rem;
+    line-height: 1.6;
+  }
+
+  .quote {
+    font-size: 1.2rem;
+  }
+
+  .name {
+    font-size: 1.8rem;
+  }
+
+  .quoteMarks {
+    right: 0.75rem;
+    bottom: 0.65rem;
+
+    width: clamp(4rem, 18cqw, 5.5rem);
+  }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .image {
+    transition: none;
+  }
+}

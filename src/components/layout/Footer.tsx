@@ -53,6 +53,7 @@ export default function Footer() {
             <Button
               href="/contact"
               ariaLabel="Get in touch with Brand Aura"
+              className={styles.footerButton}
             >
               Get in Touch
             </Button>

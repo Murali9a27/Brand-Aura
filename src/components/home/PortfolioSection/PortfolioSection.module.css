@@ -12,10 +12,8 @@
   width: 100%;
   height: calc(100svh - var(--header-height));
   min-height: 38rem;
-
+  /* padding: clamp(1rem, 2.5cqh, 2rem); */
   overflow: hidden;
-
-  border-bottom: 1px solid var(--color-border);
 
   background: #020202;
   color: #ffffff;
@@ -131,6 +129,8 @@
 
   width: 100%;
   height: 100%;
+  border: 1px solid var(--color-border);
+  border-radius: clamp(0.15rem, 0.3cqw, 0.25rem);
 
   overflow-x: auto;
   overflow-y: hidden;
@@ -139,7 +139,7 @@
 
   scrollbar-width: none;
 
-  overscroll-behavior-x: contain;
+  overscroll-behavior-x: auto;
   touch-action: pan-x pan-y;
 
   cursor: grab;
@@ -706,6 +706,7 @@
 @media (max-width: 64rem) {
   .portfolioSection {
     min-height: 40rem;
+    margin: 0;
   }
 }
 
@@ -809,6 +810,7 @@
 @media (max-width: 47.9375rem) {
   .portfolioSection {
     min-height: 40rem;
+    height: max(300px, calc(100svh - var(--header-height) - 30svh));
   }
 }
 
